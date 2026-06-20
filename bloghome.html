@@ -24,10 +24,10 @@
           <a href="#" class="hover:text-gray-900 transition">Contact</a>
         </nav>
         <div class="flex items-center gap-4">
-          <button class="hidden sm:block text-gray-500 hover:text-gray-800 transition" title="Search">
+          <button class="hidden sm:block text-gray-500 hover:text-gray-800 transition" title="Search" aria-label="Search">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
           </button>
-          <button class="md:hidden text-gray-600" title="Menu">
+          <button class="md:hidden text-gray-600" title="Menu" aria-label="Menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
         </div>
@@ -44,7 +44,7 @@
 
     <!-- ===== CATEGORY PILLS ===== -->
     <section class="mb-12">
-      <h2 class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-4">Browse by Topic</h2>
+      <h2 class="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-4">Browse by Topic</h2>
       <div class="flex flex-wrap gap-3">
         <a href="category.html" class="inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-sm font-semibold bg-red-100 text-red-700 hover:bg-red-200 transition">Technology <span class="text-xs opacity-60">12</span></a>
         <a href="category.html" class="inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-sm font-semibold bg-blue-100 text-blue-700 hover:bg-blue-200 transition">Design <span class="text-xs opacity-60">8</span></a>
@@ -64,13 +64,13 @@
 
           <!-- Card 1 -->
           <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <a href="post.html" class="block"><div class="aspect-[16/10] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/blog1/800/500" alt="" loading="lazy" /></div></a>
+            <a href="post.html" class="block"><div class="aspect-[16/10] overflow-hidden"><img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/blog1/800/500" alt="" loading="lazy" /></div></a>
             <div class="p-5 sm:p-6">
               <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-700 mb-3">Technology</span>
               <h3 class="text-lg sm:text-xl font-bold text-gray-900 leading-snug mb-2 group-hover:text-red-600 transition"><a href="post.html">The Pros of Tailwind CSS</a></h3>
               <p class="text-gray-500 text-sm leading-relaxed mb-4">Discover how Tailwind CSS's utility-first approach is reshaping modern web development and why developers are making the switch.</p>
-              <div class="flex items-center gap-3 text-xs text-gray-400">
-                <img class="w-8 h-8 rounded-full object-cover" src="https://picsum.photos/seed/author1/100/100" alt="" />
+              <div class="flex items-center gap-3 text-xs text-gray-500">
+                <img width="100" height="100" class="w-8 h-8 rounded-full object-cover" src="https://picsum.photos/seed/author1/100/100" alt="" />
                 <div><span class="block font-medium text-gray-700">Sarah Chen</span><span>Jun 15, 2026 · 5 min read</span></div>
               </div>
             </div>
@@ -78,13 +78,13 @@
 
           <!-- Card 2 -->
           <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <a href="post.html" class="block"><div class="aspect-[16/10] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/blog2/800/500" alt="" loading="lazy" /></div></a>
+            <a href="post.html" class="block"><div class="aspect-[16/10] overflow-hidden"><img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/blog2/800/500" alt="" loading="lazy" /></div></a>
             <div class="p-5 sm:p-6">
               <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 mb-3">Design</span>
               <h3 class="text-lg sm:text-xl font-bold text-gray-900 leading-snug mb-2 group-hover:text-red-600 transition"><a href="post.html">Minimalist Design Principles for Modern Interfaces</a></h3>
               <p class="text-gray-500 text-sm leading-relaxed mb-4">Exploring the core principles of minimalist design and how they apply to today's digital experiences.</p>
-              <div class="flex items-center gap-3 text-xs text-gray-400">
-                <img class="w-8 h-8 rounded-full object-cover" src="https://picsum.photos/seed/author2/100/100" alt="" />
+              <div class="flex items-center gap-3 text-xs text-gray-500">
+                <img width="100" height="100" class="w-8 h-8 rounded-full object-cover" src="https://picsum.photos/seed/author2/100/100" alt="" />
                 <div><span class="block font-medium text-gray-700">Marcus Rivera</span><span>Jun 12, 2026 · 4 min read</span></div>
               </div>
             </div>
@@ -92,13 +92,13 @@
 
           <!-- Card 3 -->
           <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <a href="post.html" class="block"><div class="aspect-[16/10] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/blog3/800/500" alt="" loading="lazy" /></div></a>
+            <a href="post.html" class="block"><div class="aspect-[16/10] overflow-hidden"><img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/blog3/800/500" alt="" loading="lazy" /></div></a>
             <div class="p-5 sm:p-6">
               <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700 mb-3">Travel</span>
               <h3 class="text-lg sm:text-xl font-bold text-gray-900 leading-snug mb-2 group-hover:text-red-600 transition"><a href="post.html">Hidden Gems: Off the Beaten Path in Southeast Asia</a></h3>
               <p class="text-gray-500 text-sm leading-relaxed mb-4">A curated guide to the most underrated destinations that most travelers miss when visiting Southeast Asia.</p>
-              <div class="flex items-center gap-3 text-xs text-gray-400">
-                <img class="w-8 h-8 rounded-full object-cover" src="https://picsum.photos/seed/author3/100/100" alt="" />
+              <div class="flex items-center gap-3 text-xs text-gray-500">
+                <img width="100" height="100" class="w-8 h-8 rounded-full object-cover" src="https://picsum.photos/seed/author3/100/100" alt="" />
                 <div><span class="block font-medium text-gray-700">Emily Nakamura</span><span>Jun 10, 2026 · 7 min read</span></div>
               </div>
             </div>
@@ -106,13 +106,13 @@
 
           <!-- Card 4 -->
           <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <a href="post.html" class="block"><div class="aspect-[16/10] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/blog4/800/500" alt="" loading="lazy" /></div></a>
+            <a href="post.html" class="block"><div class="aspect-[16/10] overflow-hidden"><img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/blog4/800/500" alt="" loading="lazy" /></div></a>
             <div class="p-5 sm:p-6">
               <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-700 mb-3">Food</span>
               <h3 class="text-lg sm:text-xl font-bold text-gray-900 leading-snug mb-2 group-hover:text-red-600 transition"><a href="post.html">Farm to Table: A Culinary Journey Through Tuscany</a></h3>
               <p class="text-gray-500 text-sm leading-relaxed mb-4">Experience the authentic flavors of Tuscany through its farm-fresh ingredients and time-honored recipes.</p>
-              <div class="flex items-center gap-3 text-xs text-gray-400">
-                <img class="w-8 h-8 rounded-full object-cover" src="https://picsum.photos/seed/author4/100/100" alt="" />
+              <div class="flex items-center gap-3 text-xs text-gray-500">
+                <img width="100" height="100" class="w-8 h-8 rounded-full object-cover" src="https://picsum.photos/seed/author4/100/100" alt="" />
                 <div><span class="block font-medium text-gray-700">Aisha Patel</span><span>Jun 8, 2026 · 6 min read</span></div>
               </div>
             </div>
@@ -120,13 +120,13 @@
 
           <!-- Card 5 -->
           <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <a href="post.html" class="block"><div class="aspect-[16/10] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/blog5/800/500" alt="" loading="lazy" /></div></a>
+            <a href="post.html" class="block"><div class="aspect-[16/10] overflow-hidden"><img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/blog5/800/500" alt="" loading="lazy" /></div></a>
             <div class="p-5 sm:p-6">
               <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-purple-100 text-purple-700 mb-3">Lifestyle</span>
               <h3 class="text-lg sm:text-xl font-bold text-gray-900 leading-snug mb-2 group-hover:text-red-600 transition"><a href="post.html">Building a Morning Routine That Actually Sticks</a></h3>
               <p class="text-gray-500 text-sm leading-relaxed mb-4">Practical tips and science-backed strategies to create a morning routine you can maintain long-term.</p>
-              <div class="flex items-center gap-3 text-xs text-gray-400">
-                <img class="w-8 h-8 rounded-full object-cover" src="https://picsum.photos/seed/author5/100/100" alt="" />
+              <div class="flex items-center gap-3 text-xs text-gray-500">
+                <img width="100" height="100" class="w-8 h-8 rounded-full object-cover" src="https://picsum.photos/seed/author5/100/100" alt="" />
                 <div><span class="block font-medium text-gray-700">James Okafor</span><span>Jun 5, 2026 · 3 min read</span></div>
               </div>
             </div>
@@ -134,13 +134,13 @@
 
           <!-- Card 6 -->
           <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <a href="post.html" class="block"><div class="aspect-[16/10] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/blog6/800/500" alt="" loading="lazy" /></div></a>
+            <a href="post.html" class="block"><div class="aspect-[16/10] overflow-hidden"><img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/blog6/800/500" alt="" loading="lazy" /></div></a>
             <div class="p-5 sm:p-6">
               <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-rose-100 text-rose-700 mb-3">Business</span>
               <h3 class="text-lg sm:text-xl font-bold text-gray-900 leading-snug mb-2 group-hover:text-red-600 transition"><a href="post.html">Bootstrapping vs Venture Capital: What Founders Need to Know</a></h3>
               <p class="text-gray-500 text-sm leading-relaxed mb-4">An honest look at the tradeoffs between bootstrapping your startup and pursuing venture funding.</p>
-              <div class="flex items-center gap-3 text-xs text-gray-400">
-                <img class="w-8 h-8 rounded-full object-cover" src="https://picsum.photos/seed/author6/100/100" alt="" />
+              <div class="flex items-center gap-3 text-xs text-gray-500">
+                <img width="100" height="100" class="w-8 h-8 rounded-full object-cover" src="https://picsum.photos/seed/author6/100/100" alt="" />
                 <div><span class="block font-medium text-gray-700">David Kim</span><span>Jun 3, 2026 · 8 min read</span></div>
               </div>
             </div>
@@ -155,7 +155,7 @@
           <a href="#" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-200 text-sm font-medium transition">3</a>
           <span class="text-gray-300 px-1">...</span>
           <a href="#" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-200 text-sm font-medium transition">12</a>
-          <a href="#" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-400 hover:text-gray-700 transition" aria-label="Next page">
+          <a href="#" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-500 hover:text-gray-700 transition" aria-label="Next page">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
           </a>
         </nav>
@@ -166,13 +166,13 @@
 
         <div class="mb-8">
           <div class="relative">
-            <input type="text" placeholder="Search articles..." class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition" />
-            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+            <input type="text" placeholder="Search articles..." aria-label="Search articles" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition" />
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
           </div>
         </div>
 
         <div class="mb-8">
-          <h3 class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-4">Categories</h3>
+          <h3 class="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-4">Categories</h3>
           <ul class="space-y-2">
             <li><a href="category.html" class="flex items-center justify-between text-sm text-gray-600 hover:text-red-600 transition py-1.5"><span>Technology</span><span class="bg-gray-100 text-gray-500 text-xs px-2 py-0.5 rounded-full">12</span></a></li>
             <li><a href="category.html" class="flex items-center justify-between text-sm text-gray-600 hover:text-red-600 transition py-1.5"><span>Design</span><span class="bg-gray-100 text-gray-500 text-xs px-2 py-0.5 rounded-full">8</span></a></li>
@@ -185,7 +185,7 @@
         </div>
 
         <div class="mb-8">
-          <h3 class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-4">Popular Tags</h3>
+          <h3 class="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-4">Popular Tags</h3>
           <div class="flex flex-wrap gap-2">
             <a href="#" class="px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-600 transition">AI</a>
             <a href="#" class="px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-600 transition">UI/UX</a>
@@ -200,11 +200,11 @@
         </div>
 
         <div>
-          <h3 class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-4">Recent Posts</h3>
+          <h3 class="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-4">Recent Posts</h3>
           <ul class="space-y-4">
-            <li><a href="post.html" class="group flex gap-3"><img class="w-16 h-16 rounded-lg object-cover shrink-0" src="https://picsum.photos/seed/r1/150/150" alt="" loading="lazy" /><div class="min-w-0"><h4 class="text-sm font-semibold text-gray-800 group-hover:text-red-600 transition line-clamp-2">The Pros of Tailwind CSS</h4><span class="text-xs text-gray-400">Jun 15, 2026</span></div></a></li>
-            <li><a href="#" class="group flex gap-3"><img class="w-16 h-16 rounded-lg object-cover shrink-0" src="https://picsum.photos/seed/r2/150/150" alt="" loading="lazy" /><div class="min-w-0"><h4 class="text-sm font-semibold text-gray-800 group-hover:text-red-600 transition line-clamp-2">Minimalist Design Principles for Modern Interfaces</h4><span class="text-xs text-gray-400">Jun 12, 2026</span></div></a></li>
-            <li><a href="#" class="group flex gap-3"><img class="w-16 h-16 rounded-lg object-cover shrink-0" src="https://picsum.photos/seed/r3/150/150" alt="" loading="lazy" /><div class="min-w-0"><h4 class="text-sm font-semibold text-gray-800 group-hover:text-red-600 transition line-clamp-2">Hidden Gems: Off the Beaten Path in Southeast Asia</h4><span class="text-xs text-gray-400">Jun 10, 2026</span></div></a></li>
+            <li><a href="post.html" class="group flex gap-3"><img width="150" height="150" class="w-16 h-16 rounded-lg object-cover shrink-0" src="https://picsum.photos/seed/r1/150/150" alt="" loading="lazy" /><div class="min-w-0"><h4 class="text-sm font-semibold text-gray-800 group-hover:text-red-600 transition line-clamp-2">The Pros of Tailwind CSS</h4><span class="text-xs text-gray-500">Jun 15, 2026</span></div></a></li>
+            <li><a href="#" class="group flex gap-3"><img width="150" height="150" class="w-16 h-16 rounded-lg object-cover shrink-0" src="https://picsum.photos/seed/r2/150/150" alt="" loading="lazy" /><div class="min-w-0"><h4 class="text-sm font-semibold text-gray-800 group-hover:text-red-600 transition line-clamp-2">Minimalist Design Principles for Modern Interfaces</h4><span class="text-xs text-gray-500">Jun 12, 2026</span></div></a></li>
+            <li><a href="#" class="group flex gap-3"><img width="150" height="150" class="w-16 h-16 rounded-lg object-cover shrink-0" src="https://picsum.photos/seed/r3/150/150" alt="" loading="lazy" /><div class="min-w-0"><h4 class="text-sm font-semibold text-gray-800 group-hover:text-red-600 transition line-clamp-2">Hidden Gems: Off the Beaten Path in Southeast Asia</h4><span class="text-xs text-gray-500">Jun 10, 2026</span></div></a></li>
           </ul>
         </div>
 
@@ -214,7 +214,7 @@
   </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="mt-16 bg-gray-900 text-gray-400">
+  <footer class="mt-16 bg-gray-900 text-gray-500">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <div>
@@ -256,6 +256,11 @@
 
 </body>
 </html>
+
+
+
+
+
 
 
 

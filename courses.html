@@ -21,10 +21,10 @@
           <a href="#" class="hover:text-gray-900 transition">Contact</a>
         </nav>
         <div class="flex items-center gap-4">
-          <button class="hidden sm:block text-gray-500 hover:text-gray-800 transition" title="Search">
+          <button class="hidden sm:block text-gray-500 hover:text-gray-800 transition" title="Search" aria-label="Search">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
           </button>
-          <button class="md:hidden text-gray-600" title="Menu">
+          <button class="md:hidden text-gray-600" title="Menu" aria-label="Menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
         </div>
@@ -34,7 +34,7 @@
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-    <nav class="text-sm text-gray-400 mb-8" aria-label="Breadcrumb">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
       <ol class="flex items-center gap-2">
         <li><a href="index.html" class="hover:text-red-600 transition">Home</a></li>
         <li><span class="mx-1">›</span></li>
@@ -46,34 +46,35 @@
       <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">Courses</h1>
       <p class="mt-3 text-gray-500 text-lg max-w-2xl">Free, hands-on courses designed to help marketers master AI tools and strategies. All courses are self-paced and completely free.</p>
 
-      <div class="flex flex-wrap gap-2 mt-6">
-        <span class="px-4 py-2 rounded-lg text-sm font-semibold bg-indigo-600 text-white cursor-pointer transition">All</span>
-        <span class="px-4 py-2 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 cursor-pointer transition">Beginner</span>
-        <span class="px-4 py-2 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 cursor-pointer transition">Intermediate</span>
-        <span class="px-4 py-2 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 cursor-pointer transition">Advanced</span>
+      <div class="flex flex-wrap gap-2 mt-6" role="group" aria-label="Filter by level">
+        <button class="px-4 py-2 rounded-lg text-sm font-semibold bg-red-600 text-white transition">All</button>
+        <button class="px-4 py-2 rounded-lg text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 transition">Beginner</button>
+        <button class="px-4 py-2 rounded-lg text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 transition">Intermediate</button>
+        <button class="px-4 py-2 rounded-lg text-sm font-medium bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 transition">Advanced</button>
       </div>
     </section>
 
+    <h2 class="sr-only">Course List</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
       <!-- Course 1 -->
       <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-        <a href="course-chatgpt-marketers.html" class="block"><div class="aspect-[16/9] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course1/800/450" alt="" loading="lazy" /></div></a>
+        <a href="course-chatgpt-marketers.html" class="block"><div class="aspect-[16/9] overflow-hidden"><img width="800" height="450" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course1/800/450" alt="" loading="lazy" /></div></a>
         <div class="p-5 sm:p-6">
           <div class="flex items-center gap-2 mb-3">
             <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700">Beginner</span>
-            <span class="text-xs text-gray-400">12 lessons</span>
+            <span class="text-xs text-gray-500">12 lessons</span>
           </div>
           <h3 class="text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-indigo-600 transition"><a href="course-chatgpt-marketers.html">ChatGPT for Digital Marketers</a></h3>
           <p class="text-gray-500 text-sm leading-relaxed mb-4">Learn to use ChatGPT for content ideation, copywriting, email campaigns, and audience research. Practical prompts and real workflows included.</p>
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 text-xs text-gray-400">
-              <img class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr1/100/100" alt="" />
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <img width="100" height="100" class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr1/100/100" alt="" />
               <span class="text-gray-700 font-medium">Sarah Chen</span>
             </div>
             <div class="flex items-center gap-1">
               <span class="text-amber-500 text-xs">★★★★★</span>
-              <span class="text-xs text-gray-400">4.9</span>
+              <span class="text-xs text-gray-500">4.9</span>
             </div>
           </div>
         </div>
@@ -81,22 +82,22 @@
 
       <!-- Course 2 -->
       <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-        <a href="#" class="block"><div class="aspect-[16/9] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course2/800/450" alt="" loading="lazy" /></div></a>
+        <a href="#" class="block"><div class="aspect-[16/9] overflow-hidden"><img width="800" height="450" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course2/800/450" alt="" loading="lazy" /></div></a>
         <div class="p-5 sm:p-6">
           <div class="flex items-center gap-2 mb-3">
             <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700">Beginner</span>
-            <span class="text-xs text-gray-400">8 lessons</span>
+            <span class="text-xs text-gray-500">8 lessons</span>
           </div>
           <h3 class="text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-indigo-600 transition"><a href="#">Generative AI for Social Media Marketing</a></h3>
           <p class="text-gray-500 text-sm leading-relaxed mb-4">Create posts, images, and ad copy for social platforms using AI. Covers Canva AI, ChatGPT, and Midjourney for social media workflows.</p>
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 text-xs text-gray-400">
-              <img class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr2/100/100" alt="" />
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <img width="100" height="100" class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr2/100/100" alt="" />
               <span class="text-gray-700 font-medium">Marcus Rivera</span>
             </div>
             <div class="flex items-center gap-1">
               <span class="text-amber-500 text-xs">★★★★★</span>
-              <span class="text-xs text-gray-400">4.8</span>
+              <span class="text-xs text-gray-500">4.8</span>
             </div>
           </div>
         </div>
@@ -104,22 +105,22 @@
 
       <!-- Course 3 -->
       <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-        <a href="#" class="block"><div class="aspect-[16/9] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course3/800/450" alt="" loading="lazy" /></div></a>
+        <a href="#" class="block"><div class="aspect-[16/9] overflow-hidden"><img width="800" height="450" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course3/800/450" alt="" loading="lazy" /></div></a>
         <div class="p-5 sm:p-6">
           <div class="flex items-center gap-2 mb-3">
             <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700">Intermediate</span>
-            <span class="text-xs text-gray-400">16 lessons</span>
+            <span class="text-xs text-gray-500">16 lessons</span>
           </div>
           <h3 class="text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-indigo-600 transition"><a href="#">AI Content Strategy Masterclass</a></h3>
           <p class="text-gray-500 text-sm leading-relaxed mb-4">Build a complete AI-powered content strategy. From audience analysis to editorial planning to performance measurement.</p>
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 text-xs text-gray-400">
-              <img class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr3/100/100" alt="" />
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <img width="100" height="100" class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr3/100/100" alt="" />
               <span class="text-gray-700 font-medium">Emily Nakamura</span>
             </div>
             <div class="flex items-center gap-1">
               <span class="text-amber-500 text-xs">★★★★½</span>
-              <span class="text-xs text-gray-400">4.7</span>
+              <span class="text-xs text-gray-500">4.7</span>
             </div>
           </div>
         </div>
@@ -127,22 +128,22 @@
 
       <!-- Course 4 -->
       <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-        <a href="#" class="block"><div class="aspect-[16/9] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course4/800/450" alt="" loading="lazy" /></div></a>
+        <a href="#" class="block"><div class="aspect-[16/9] overflow-hidden"><img width="800" height="450" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course4/800/450" alt="" loading="lazy" /></div></a>
         <div class="p-5 sm:p-6">
           <div class="flex items-center gap-2 mb-3">
             <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700">Intermediate</span>
-            <span class="text-xs text-gray-400">14 lessons</span>
+            <span class="text-xs text-gray-500">14 lessons</span>
           </div>
           <h3 class="text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-indigo-600 transition"><a href="#">Prompt Engineering for Business</a></h3>
           <p class="text-gray-500 text-sm leading-relaxed mb-4">Master the art of crafting effective prompts for business applications. Techniques for consistency, tone control, and complex outputs.</p>
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 text-xs text-gray-400">
-              <img class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr4/100/100" alt="" />
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <img width="100" height="100" class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr4/100/100" alt="" />
               <span class="text-gray-700 font-medium">Aisha Patel</span>
             </div>
             <div class="flex items-center gap-1">
               <span class="text-amber-500 text-xs">★★★★½</span>
-              <span class="text-xs text-gray-400">4.6</span>
+              <span class="text-xs text-gray-500">4.6</span>
             </div>
           </div>
         </div>
@@ -150,22 +151,22 @@
 
       <!-- Course 5 -->
       <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-        <a href="#" class="block"><div class="aspect-[16/9] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course5/800/450" alt="" loading="lazy" /></div></a>
+        <a href="#" class="block"><div class="aspect-[16/9] overflow-hidden"><img width="800" height="450" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course5/800/450" alt="" loading="lazy" /></div></a>
         <div class="p-5 sm:p-6">
           <div class="flex items-center gap-2 mb-3">
             <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700">Intermediate</span>
-            <span class="text-xs text-gray-400">10 lessons</span>
+            <span class="text-xs text-gray-500">10 lessons</span>
           </div>
           <h3 class="text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-indigo-600 transition"><a href="#">AI Image Generation for Brand Design</a></h3>
           <p class="text-gray-500 text-sm leading-relaxed mb-4">Use Midjourney, DALL-E, and Adobe Firefly to create on-brand visuals. Covers style guides, consistent characters, and commercial use.</p>
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 text-xs text-gray-400">
-              <img class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr5/100/100" alt="" />
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <img width="100" height="100" class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr5/100/100" alt="" />
               <span class="text-gray-700 font-medium">James Okafor</span>
             </div>
             <div class="flex items-center gap-1">
               <span class="text-amber-500 text-xs">★★★★☆</span>
-              <span class="text-xs text-gray-400">4.5</span>
+              <span class="text-xs text-gray-500">4.5</span>
             </div>
           </div>
         </div>
@@ -173,22 +174,22 @@
 
       <!-- Course 6 -->
       <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-        <a href="#" class="block"><div class="aspect-[16/9] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course6/800/450" alt="" loading="lazy" /></div></a>
+        <a href="#" class="block"><div class="aspect-[16/9] overflow-hidden"><img width="800" height="450" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course6/800/450" alt="" loading="lazy" /></div></a>
         <div class="p-5 sm:p-6">
           <div class="flex items-center gap-2 mb-3">
             <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-purple-700">Advanced</span>
-            <span class="text-xs text-gray-400">20 lessons</span>
+            <span class="text-xs text-gray-500">20 lessons</span>
           </div>
           <h3 class="text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-indigo-600 transition"><a href="#">AI-Powered SEO & Analytics</a></h3>
           <p class="text-gray-500 text-sm leading-relaxed mb-4">Leverage AI for keyword research, content optimization, competitor analysis, and predictive search trends using Surfer SEO and custom tools.</p>
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 text-xs text-gray-400">
-              <img class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr6/100/100" alt="" />
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <img width="100" height="100" class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr6/100/100" alt="" />
               <span class="text-gray-700 font-medium">David Kim</span>
             </div>
             <div class="flex items-center gap-1">
               <span class="text-amber-500 text-xs">★★★★☆</span>
-              <span class="text-xs text-gray-400">4.4</span>
+              <span class="text-xs text-gray-500">4.4</span>
             </div>
           </div>
         </div>
@@ -196,22 +197,22 @@
 
       <!-- Course 7 -->
       <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-        <a href="#" class="block"><div class="aspect-[16/9] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course7/800/450" alt="" loading="lazy" /></div></a>
+        <a href="#" class="block"><div class="aspect-[16/9] overflow-hidden"><img width="800" height="450" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course7/800/450" alt="" loading="lazy" /></div></a>
         <div class="p-5 sm:p-6">
           <div class="flex items-center gap-2 mb-3">
             <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-purple-700">Advanced</span>
-            <span class="text-xs text-gray-400">18 lessons</span>
+            <span class="text-xs text-gray-500">18 lessons</span>
           </div>
           <h3 class="text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-indigo-600 transition"><a href="#">Building AI Chatbots for Customer Engagement</a></h3>
           <p class="text-gray-500 text-sm leading-relaxed mb-4">Design, build, and deploy AI chatbots for customer support, lead generation, and interactive marketing using no-code platforms.</p>
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 text-xs text-gray-400">
-              <img class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr1/100/100" alt="" />
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <img width="100" height="100" class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr1/100/100" alt="" />
               <span class="text-gray-700 font-medium">Sarah Chen</span>
             </div>
             <div class="flex items-center gap-1">
               <span class="text-amber-500 text-xs">★★★★½</span>
-              <span class="text-xs text-gray-400">4.6</span>
+              <span class="text-xs text-gray-500">4.6</span>
             </div>
           </div>
         </div>
@@ -219,22 +220,22 @@
 
       <!-- Course 8 -->
       <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-        <a href="#" class="block"><div class="aspect-[16/9] overflow-hidden"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course8/800/450" alt="" loading="lazy" /></div></a>
+        <a href="#" class="block"><div class="aspect-[16/9] overflow-hidden"><img width="800" height="450" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/course8/800/450" alt="" loading="lazy" /></div></a>
         <div class="p-5 sm:p-6">
           <div class="flex items-center gap-2 mb-3">
             <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-purple-700">Advanced</span>
-            <span class="text-xs text-gray-400">22 lessons</span>
+            <span class="text-xs text-gray-500">22 lessons</span>
           </div>
           <h3 class="text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-indigo-600 transition"><a href="#">Data-Driven Marketing with Machine Learning</a></h3>
           <p class="text-gray-500 text-sm leading-relaxed mb-4">Understand ML fundamentals applied to marketing. Customer segmentation, churn prediction, recommendation systems, and campaign optimization.</p>
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 text-xs text-gray-400">
-              <img class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr3/100/100" alt="" />
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <img width="100" height="100" class="w-7 h-7 rounded-full object-cover" src="https://picsum.photos/seed/instr3/100/100" alt="" />
               <span class="text-gray-700 font-medium">Emily Nakamura</span>
             </div>
             <div class="flex items-center gap-1">
               <span class="text-amber-500 text-xs">★★★★☆</span>
-              <span class="text-xs text-gray-400">4.3</span>
+              <span class="text-xs text-gray-500">4.3</span>
             </div>
           </div>
         </div>
@@ -249,14 +250,14 @@
       <a href="#" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-200 text-sm font-medium transition">3</a>
       <span class="text-gray-300 px-1">...</span>
       <a href="#" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-200 text-sm font-medium transition">8</a>
-      <a href="#" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-400 hover:text-gray-700 transition" aria-label="Next page">
+      <a href="#" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-500 hover:text-gray-700 transition" aria-label="Next page">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
       </a>
     </nav>
 
   </main>
 
-  <footer class="mt-16 bg-gray-900 text-gray-400">
+  <footer class="mt-16 bg-gray-900 text-gray-500">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <div><h4 class="text-white font-bold text-lg mb-4">aimrarket<span class="text-red-600">.</span></h4><p class="text-sm leading-relaxed">Your hub for AI marketing insights, curated rankings, and free courses.</p></div>
@@ -270,6 +271,11 @@
 
 </body>
 </html>
+
+
+
+
+
 
 
 
