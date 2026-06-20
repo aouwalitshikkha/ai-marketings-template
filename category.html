@@ -24,7 +24,7 @@
           <a href="#" class="hover:text-gray-900 transition">Contact</a>
         </nav>
         <div class="flex items-center gap-4">
-          <button class="hidden sm:block text-gray-500 hover:text-gray-800 transition" title="Search" aria-label="Search">
+          <button id="search-btn" class="hidden sm:block text-gray-500 hover:text-gray-800 transition" title="Search" aria-label="Search">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
           </button>
           <button class="md:hidden text-gray-600" title="Menu" aria-label="Menu">
@@ -34,6 +34,16 @@
       </div>
     </div>
   </header>
+<div id="search-bar" class="hidden bg-white border-b border-gray-200 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <form action="/search" method="GET" role="search">
+      <div class="relative">
+        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+        <input type="search" id="search-input" placeholder="Search articles, courses, listicles..." class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition" autocomplete="off" />
+      </div>
+    </form>
+  </div>
+</div>
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
@@ -257,8 +267,12 @@
     </div>
   </footer>
 
+<script>
+(function(){var b=document.getElementById("search-btn"),s=document.getElementById("search-bar"),i=document.getElementById("search-input");if(b&&s){b.addEventListener("click",function(e){e.stopPropagation();s.classList.toggle("hidden");if(!s.classList.contains("hidden")){setTimeout(function(){i.focus()},100)}});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!s.classList.contains("hidden")){s.classList.add("hidden")}});document.addEventListener("click",function(e){if(!s.classList.contains("hidden")&&!s.contains(e.target)&&e.target!==b&&!b.contains(e.target)){s.classList.add("hidden")}})}})();
+</script>
 </body>
 </html>
+
 
 
 
