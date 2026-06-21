@@ -1,5 +1,9 @@
+from django.core.cache import cache
 from django.views.generic import TemplateView
 from .models import GlossaryTerm
+
+CACHE_KEY = 'glossary_groups'
+CACHE_TTL = 3600
 
 LETTER_RANGES = [
     ('group-a-e', 'A–E', 'ABCDE'),
@@ -10,22 +14,31 @@ LETTER_RANGES = [
 ]
 
 
+def build_groups():
+    terms = GlossaryTerm.objects.select_related('category').prefetch_related('related_terms').filter(
+        status=GlossaryTerm.Status.PUBLISHED
+    ).order_by('term')
+
+    groups = []
+    for group_id, label, letters in LETTER_RANGES:
+        filtered = [t for t in terms if t.term[0].upper() in letters]
+        groups.append({
+            'id': group_id,
+            'label': label,
+            'terms': filtered,
+            'count': len(filtered),
+        })
+    return groups
+
+
 class GlossaryIndexView(TemplateView):
     template_name = 'glossary/index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        terms = GlossaryTerm.objects.filter(status=GlossaryTerm.Status.PUBLISHED).order_by('term')
-
-        groups = []
-        for group_id, label, letters in LETTER_RANGES:
-            filtered = [t for t in terms if t.term[0].upper() in letters]
-            groups.append({
-                'id': group_id,
-                'label': label,
-                'terms': filtered,
-                'count': len(filtered),
-            })
-
+        groups = cache.get(CACHE_KEY)
+        if groups is None:
+            groups = build_groups()
+            cache.set(CACHE_KEY, groups, CACHE_TTL)
         context['groups'] = groups
         return context
