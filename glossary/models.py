@@ -1,5 +1,3 @@
-from django.core.exceptions import ValidationError
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models.functions import Lower
 
@@ -9,28 +7,14 @@ class GlossaryTerm(models.Model):
     short_definition = models.CharField(max_length=250)
     long_definition = models.TextField(blank=True)
 
-    synonyms = models.CharField(max_length=500, blank=True)
-    acronym = models.CharField(max_length=300, blank=True)
-
-    example = models.TextField(blank=True)
-    use_cases = models.TextField(blank=True)
-    related_terms = models.ManyToManyField(
-        'self', blank=True, symmetrical=True)
-
-    sources = models.TextField(blank=True)
-    notes = models.TextField(blank=True)
-
     class Status(models.TextChoices):
         DRAFT = 'DRAFT', 'Draft'
         PUBLISHED = 'PUBLISHED', 'Published'
 
     status = models.CharField(
         max_length=10, choices=Status.choices, default=Status.DRAFT, db_index=True)
-    review_score = models.PositiveIntegerField(
-        default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    version = models.PositiveIntegerField(default=1)
 
     class Meta:
         ordering = ['term']
@@ -41,21 +25,6 @@ class GlossaryTerm(models.Model):
 
     def __str__(self):
         return self.term
-
-    def clean(self):
-        if self.acronym:
-            self.acronym = self.acronym.upper().strip()
-        if self.synonyms:
-            names = [s.strip() for s in self.synonyms.split(',') if s.strip()]
-            for n in names:
-                qs = GlossaryTerm.objects.exclude(
-                    pk=self.pk).filter(term__iexact=n)
-                if qs.exists():
-                    raise ValidationError(
-                        "A synonym matches an existing term name.")
-                if self.term.lower().strip() == n.lower():
-                    raise ValidationError(
-                        "Synonyms cannot include the term itself.")
 
     def save(self, *args, **kwargs):
         self.full_clean()

@@ -52,7 +52,7 @@
       <div class="bg-white rounded-xl border border-gray-100 shadow-sm divide-y divide-gray-100">
         {% for term in group.terms %}
         <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default" id="term-{{ term.pk }}">
-          <h3 class="font-semibold text-gray-900">{{ term.term }}{% if term.acronym %} <span class="text-sm text-gray-500 font-normal">({{ term.acronym }})</span>{% endif %}</h3>
+          <h3 class="font-semibold text-gray-900">{{ term.term }}</h3>
           <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">{{ term.short_definition }}</p>
           {% if term.long_definition %}
           <p class="text-sm text-gray-500 mt-2 leading-relaxed">{{ term.long_definition }}</p>
