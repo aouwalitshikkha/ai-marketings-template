@@ -34,7 +34,7 @@
     <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">{{ post.title }}</h1>
 
     <div class="flex items-center gap-3 text-sm text-gray-500 mb-10 pb-8 border-b border-gray-200">
-      <img width="100" height="100" class="w-10 h-10 rounded-full object-cover" src="https://picsum.photos/seed/author1/100/100" alt="{{ post.author.get_full_name|default:post.author.username }}" loading="lazy" />
+      <img width="100" height="100" class="w-10 h-10 rounded-lg object-cover" src="https://picsum.photos/seed/author1/100/100" alt="{{ post.author.get_full_name|default:post.author.username }}" loading="lazy" />
       <div>
         <span class="block font-medium text-gray-700">{{ post.author.get_full_name|default:post.author.username }}</span>
         <span>{{ post.publish_date|date:"M d, Y" }} · {{ post.body|striptags|wordcount }} min read</span>
@@ -63,7 +63,7 @@
     {% endif %}
 
     <div class="mt-12 p-6 sm:p-8 bg-white rounded-xl border border-gray-100 shadow-sm flex flex-col sm:flex-row items-start gap-5">
-      <img width="200" height="200" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover shrink-0" src="https://picsum.photos/seed/author1/200/200" alt="{{ post.author.get_full_name|default:post.author.username }}" loading="lazy" />
+      <img width="200" height="200" class="w-16 h-16 sm:w-20 sm:h-20 rounded-lg object-cover shrink-0" src="https://picsum.photos/seed/author1/200/200" alt="{{ post.author.get_full_name|default:post.author.username }}" loading="lazy" />
       <div>
         <h3 class="text-lg font-bold text-gray-900 mb-1">{{ post.author.get_full_name|default:post.author.username }}</h3>
         <p class="text-sm text-gray-500 leading-relaxed">Writer and AI marketing enthusiast. Sharing practical insights on AI tools, content strategy, and digital marketing.</p>
