@@ -45,7 +45,7 @@
         <span class="font-medium text-gray-700">{{ post.publish_date|date:"M d, Y" }}</span>
       </span>
       <span class="hidden sm:inline text-gray-300">|</span>
-      <span class="flex items-center gap-1.5">
+      <span class="hidden sm:flex items-center gap-1.5">
         <span class="text-gray-400">Time to read:</span>
         <span class="font-medium text-gray-700">{{ post.body|striptags|read_time }} min</span>
       </span>
