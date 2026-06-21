@@ -22,6 +22,7 @@ from glossary.views import GlossaryMarkdownView
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^glossary\.md$', GlossaryMarkdownView.as_view(), name='glossary_markdown'),
+    path('blog/', include('blog.urls')),
     path('glossary/', include('glossary.urls')),
     path('api/', include('api.urls')),
     path('api/auth/', include('rest_framework.urls')),
