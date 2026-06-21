@@ -53,10 +53,7 @@
         {% for term in group.terms %}
         <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default" id="term-{{ term.pk }}">
           <h3 class="font-semibold text-gray-900">{{ term.term }}</h3>
-          <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">{{ term.short_definition }}</p>
-          {% if term.long_definition %}
-          <p class="text-sm text-gray-500 mt-2 leading-relaxed">{{ term.long_definition }}</p>
-          {% endif %}
+          <div class="text-sm text-gray-600 mt-1.5 leading-relaxed">{{ term.description|safe }}</div>
         </div>
         {% empty %}
         <div class="px-5 py-4 text-sm text-gray-400 italic">No terms in this range yet.</div>

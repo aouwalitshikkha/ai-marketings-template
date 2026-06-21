@@ -1,11 +1,11 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 from django.db.models.functions import Lower
 
 
 class GlossaryTerm(models.Model):
     term = models.CharField(max_length=255, unique=True)
-    short_definition = models.CharField(max_length=250)
-    long_definition = models.TextField(blank=True)
+    description = RichTextField()
 
     class Status(models.TextChoices):
         DRAFT = 'DRAFT', 'Draft'
