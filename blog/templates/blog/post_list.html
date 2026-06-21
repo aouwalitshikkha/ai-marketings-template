@@ -8,20 +8,11 @@
 {% block nav_blog %}text-gray-900 font-semibold{% endblock %}
 
 {% block content %}
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-
-  <section class="mb-10">
-    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">Blog</h1>
-    <p class="mt-2 text-gray-500 text-lg">AI marketing insights, tutorials, and industry perspectives to keep you ahead.</p>
-  </section>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
 
   <section class="mb-12">
-    <h2 class="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-4">Browse by Topic</h2>
-    <div class="flex flex-wrap gap-3">
-      {% for cat in categories %}
-      <a href="/blog/category/{{ cat.slug }}/" class="inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-sm font-semibold bg-red-100 text-red-700 hover:bg-red-200 transition">{{ cat.name }} <span class="text-xs opacity-60">{{ cat.post_count }}</span></a>
-      {% endfor %}
-    </div>
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">Blog</h1>
+    <p class="mt-2 text-gray-500 text-lg">AI marketing insights, tutorials, and industry perspectives to keep you ahead.</p>
   </section>
 
   <div class="lg:flex lg:gap-12">
