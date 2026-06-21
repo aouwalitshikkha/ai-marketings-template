@@ -15,7 +15,7 @@ LETTER_RANGES = [
 
 
 def build_groups():
-    terms = GlossaryTerm.objects.select_related('category').prefetch_related('related_terms').filter(
+    terms = GlossaryTerm.objects.prefetch_related('related_terms').filter(
         status=GlossaryTerm.Status.PUBLISHED
     ).order_by('term')
 
