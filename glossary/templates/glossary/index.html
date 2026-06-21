@@ -40,7 +40,7 @@
   <div id="glossary-nav" class="sticky top-16 z-40 bg-[#faf8f5]/95 backdrop-blur py-4 mb-8 border-b border-gray-200">
     <nav class="flex flex-wrap gap-2" aria-label="Glossary letter groups">
       {% for group in groups %}
-      <a href="#{{ group.id }}" class="group-link px-4 py-2 rounded-lg text-sm font-semibold bg-red-100 text-red-800 hover:bg-red-200 transition" data-target="{{ group.id }}">{{ group.label }} <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-200 text-red-800 text-xs font-bold ml-1">{{ group.count }}</span></a>
+      <a href="#{{ group.id }}" class="group-link px-4 py-2 rounded-lg text-sm font-semibold bg-red-100 text-red-800 hover:bg-red-600 hover:text-white transition" data-target="{{ group.id }}">{{ group.label }} <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-200 text-red-800 text-xs font-bold ml-1">{{ group.count }}</span></a>
       {% endfor %}
     </nav>
   </div>
