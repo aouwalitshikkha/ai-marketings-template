@@ -57,7 +57,7 @@ class GlossaryIndexView(TemplateView):
 
 class GlossaryMarkdownView(TemplateView):
     template_name = 'glossary/glossary.md'
-    content_type = 'text/markdown'
+    content_type = 'text/markdown; charset=utf-8'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
