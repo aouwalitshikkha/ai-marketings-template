@@ -92,14 +92,9 @@
               {% endif %}
               <span class="text-xs text-gray-400">{{ related.publish_date|date:"M d, Y" }}</span>
             </div>
-            <h3 class="text-sm font-bold text-gray-900 leading-snug mb-2 group-hover:text-red-600 transition line-clamp-2">
+            <h3 class="text-sm font-bold text-gray-900 leading-snug group-hover:text-red-600 transition line-clamp-2">
               <a href="{{ related.get_absolute_url }}">{{ related.title }}</a>
             </h3>
-            <p class="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">{{ related.short_answer|truncatewords:15 }}</p>
-            <div class="flex items-center gap-1 text-xs text-gray-400 pt-3 border-t border-gray-100">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <span>{{ related.body|striptags|wordcount }} min read</span>
-            </div>
           </div>
         </article>
         {% endfor %}
