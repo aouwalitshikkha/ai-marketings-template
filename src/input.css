@@ -11,10 +11,7 @@
 @layer components {
   .post-content {
     color: #4b5563;
-    line-height: 1.625;
-  }
-  .post-content > * + * {
-    margin-top: 1.5rem;
+    line-height: 1.75;
   }
   .post-content h2 {
     font-size: 1.5rem;
@@ -33,10 +30,10 @@
     font-weight: 700;
     color: #111827;
     margin-top: 2rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
   }
   .post-content p {
-    margin-bottom: 0;
+    margin-bottom: 1.25rem;
   }
   .post-content a {
     color: #dc2626;
@@ -56,20 +53,6 @@
     border-radius: 0.25rem;
     font-size: 0.875rem;
   }
-  .post-content pre {
-    background: #111827;
-    color: #f3f4f6;
-    padding: 1.25rem;
-    border-radius: 0.75rem;
-    overflow-x: auto;
-    line-height: 1.625;
-  }
-  .post-content pre code {
-    background: transparent;
-    color: inherit;
-    padding: 0;
-    border-radius: 0;
-  }
   .post-content blockquote {
     border-left: 4px solid #dc2626;
     background: #fef2f2;
@@ -78,7 +61,8 @@
     color: #4b5563;
     font-style: italic;
     font-size: 1.125rem;
-    line-height: 1.625;
+    line-height: 1.75;
+    margin: 2rem 0;
   }
   .post-content blockquote p {
     margin: 0;
@@ -94,6 +78,7 @@
   .post-content ul {
     list-style-type: disc;
     padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
   }
   .post-content ul li {
     color: #4b5563;
@@ -102,6 +87,7 @@
   .post-content ol {
     list-style-type: decimal;
     padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
   }
   .post-content ol li {
     color: #4b5563;
@@ -110,14 +96,29 @@
   .post-content li::marker {
     color: #dc2626;
   }
+  .post-content pre {
+    background: #111827;
+    color: #f3f4f6;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    line-height: 1.625;
+    margin: 1.5rem 0;
+  }
+  .post-content pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+  }
   .post-content img {
     max-width: 100%;
     height: auto;
     border-radius: 0.75rem;
+    margin: 2rem 0;
   }
   .post-content figure {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
   }
   .post-content figure img {
     margin: 0;
@@ -132,5 +133,6 @@
     border: 0;
     height: 1px;
     background: #e5e7eb;
+    margin: 2rem 0;
   }
 }
