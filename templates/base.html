@@ -8,7 +8,9 @@
   <link rel="stylesheet" href="{% static 'output.css' %}" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="author" content="aimrarket" />
+  <meta name="description" content="{% block meta_description %}Your guide to AI marketing terminology.{% endblock %}" />
   <meta name="theme-color" content="#faf8f5" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>📊</text></svg>" />
   <meta name="color-scheme" content="light" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
@@ -59,7 +61,7 @@
 
   {% block content %}{% endblock %}
 
-  <footer class="mt-16 bg-gray-900 text-gray-500">
+  <footer class="mt-16 bg-gray-900 text-gray-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <div><h4 class="text-white font-bold text-lg mb-4">aimrarket<span class="text-red-600">.</span></h4><p class="text-sm leading-relaxed">Your hub for AI marketing insights, curated rankings, and free courses.</p></div>
@@ -68,7 +70,7 @@
         <div><h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Contact</h4><ul class="space-y-2 text-sm"><li class="flex items-start gap-2"><svg class="w-4 h-4 text-gray-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><a href="mailto:hello@aimrarket.com" class="hover:text-white transition">hello@aimrarket.com</a></li><li class="flex items-start gap-2"><svg class="w-4 h-4 text-gray-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>We respond within 24 hours</span></li><li class="flex items-start gap-2"><svg class="w-4 h-4 text-gray-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span>123 Marketing Lane, SF, CA 94105</span></li></ul></div>
       </div>
     </div>
-    <div class="border-t border-gray-800"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-center text-xs text-gray-500">&copy; 2026 aimrarket. All rights reserved.</div></div>
+    <div class="border-t border-gray-800"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-center text-xs text-gray-400">&copy; 2026 aimrarket. All rights reserved.</div></div>
   </footer>
 
 <script>
