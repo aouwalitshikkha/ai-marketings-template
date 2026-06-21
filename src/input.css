@@ -9,127 +9,110 @@
 }
 
 @layer components {
-  .post-content {
-    color: #4b5563;
-    line-height: 1.75;
+  .ckeditor-content {
+    color: #374151;
+    font-size: 1.125rem;
+    line-height: 1.8;
   }
-  .post-content > :not(:first-child) {
-    margin-top: 1.5rem;
-  }
-  .post-content h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
+  .ckeditor-content h1,
+  .ckeditor-content h2,
+  .ckeditor-content h3,
+  .ckeditor-content h4,
+  .ckeditor-content h5,
+  .ckeditor-content h6 {
     color: #111827;
-    margin-top: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-  @media (min-width: 40rem) {
-    .post-content h2 {
-      font-size: 1.875rem;
-    }
-  }
-  .post-content h3 {
-    font-size: 1.25rem;
     font-weight: 700;
-    color: #111827;
+    line-height: 1.3;
     margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  .ckeditor-content h1 {
+    font-size: 2.5rem;
+  }
+  .ckeditor-content h2 {
+    font-size: 2rem;
+  }
+  .ckeditor-content h3 {
+    font-size: 1.75rem;
+  }
+  .ckeditor-content h4 {
+    font-size: 1.5rem;
+  }
+  .ckeditor-content p {
+    margin-bottom: 1.5rem;
+  }
+  .ckeditor-content ul,
+  .ckeditor-content ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+  }
+  .ckeditor-content ul {
+    list-style: disc;
+  }
+  .ckeditor-content ol {
+    list-style: decimal;
+  }
+  .ckeditor-content li {
     margin-bottom: 0.5rem;
   }
-  .post-content p {
-    margin-bottom: 0.5rem;
+  .ckeditor-content a {
+    color: #2563eb;
+    text-decoration: none;
   }
-  .post-content a {
-    color: #dc2626;
+  .ckeditor-content a:hover {
     text-decoration: underline;
-    text-underline-offset: 2px;
   }
-  .post-content a:hover {
-    color: #b91c1c;
-  }
-  .post-content strong {
+  .ckeditor-content strong {
+    font-weight: 700;
     color: #111827;
   }
-  .post-content code {
-    background: #f3f4f6;
-    color: #dc2626;
-    padding: 0.125rem 0.375rem;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-  }
-  .post-content blockquote {
-    border-left: 4px solid #dc2626;
-    background: #fef2f2;
-    border-radius: 0 0.5rem 0.5rem 0;
-    padding: 1.25rem 1.5rem;
+  .ckeditor-content blockquote {
+    border-left: 4px solid #3b82f6;
+    padding-left: 1rem;
+    margin: 2rem 0;
     color: #4b5563;
     font-style: italic;
-    font-size: 1.125rem;
-    line-height: 1.75;
   }
-  .post-content blockquote p {
-    margin: 0;
-  }
-  .post-content blockquote cite {
-    display: block;
-    margin-top: 0.75rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #6b7280;
-    font-style: normal;
-  }
-  .post-content ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
-  }
-  .post-content ul li {
-    color: #4b5563;
-    margin-bottom: 0.5rem;
-  }
-  .post-content ol {
-    list-style-type: decimal;
-    padding-left: 1.5rem;
-  }
-  .post-content ol li {
-    color: #4b5563;
-    margin-bottom: 0.5rem;
-  }
-  .post-content li::marker {
-    color: #dc2626;
-  }
-  .post-content pre {
-    background: #111827;
-    color: #f3f4f6;
-    padding: 1.25rem;
-    border-radius: 0.75rem;
-    overflow-x: auto;
-    line-height: 1.625;
-  }
-  .post-content pre code {
-    background: transparent;
-    color: inherit;
-    padding: 0;
-    border-radius: 0;
-  }
-  .post-content img {
+  .ckeditor-content img {
     max-width: 100%;
     height: auto;
-    border-radius: 0.75rem;
+    border-radius: 12px;
+    margin: 2rem auto;
+    display: block;
   }
-  .post-content figure {
-    margin: 1.5rem 0;
+  .ckeditor-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
   }
-  .post-content figure img {
-    margin: 0;
+  .ckeditor-content th,
+  .ckeditor-content td {
+    border: 1px solid #e5e7eb;
+    padding: 0.75rem;
+    text-align: left;
   }
-  .post-content figcaption {
-    text-align: center;
-    font-size: 0.875rem;
-    color: #6b7280;
-    margin-top: 0.75rem;
+  .ckeditor-content th {
+    background: #f9fafb;
+    font-weight: 600;
   }
-  .post-content hr {
-    border: 0;
-    height: 1px;
-    background: #e5e7eb;
+  .ckeditor-content pre {
+    background: #111827;
+    color: #f9fafb;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+  .ckeditor-content code {
+    background: #f3f4f6;
+    color: #dc2626;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  .ckeditor-content hr {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 3rem 0;
   }
 }
