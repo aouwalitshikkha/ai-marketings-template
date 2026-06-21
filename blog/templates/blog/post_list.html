@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load blog_extras %}
 {% block title %}Blog — aimrarket{% endblock %}
 {% block meta_description %}AI marketing insights, tutorials, and industry perspectives. Read articles on AI tools, content strategy, and digital marketing.{% endblock %}
 {% block og_title %}Blog — aimrarket{% endblock %}
@@ -41,7 +42,7 @@
             <p class="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">{{ post.short_answer|truncatewords:20 }}</p>
             <div class="flex items-center gap-1 text-xs text-gray-400 pt-3 border-t border-gray-100">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <span>{{ post.body|striptags|wordcount }} min read</span>
+              <span>{{ post.body|striptags|read_time }} min read</span>
             </div>
           </div>
         </article>
