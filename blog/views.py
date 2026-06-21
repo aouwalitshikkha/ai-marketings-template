@@ -45,4 +45,7 @@ class CategoryView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category'] = self.category
+        context['categories'] = Category.objects.annotate(post_count=Count('posts'))
+        context['tags'] = Tag.objects.all()
+        context['recent_posts'] = Post.objects.filter(status=Post.Status.PUBLISHED).order_by('-publish_date')[:5]
         return context
