@@ -25,16 +25,18 @@ top10index.html         Top 10 landing (listicle cards)
 top10-ai-tools.html     detailed Top 10 listicle (10 items)
 courses.html            course catalog (8 courses, level filter)
 course-chatgpt-marketers.html  single course detail (syllabus)
+glossary.html           AI marketing glossary (expandable terms)
 about.html              about us (story, values, 2 team members)
 contact.html            contact form
 search.html             client-side search (reads ?q= parameter)
+privacy.html            privacy policy
 ```
 
 ## Nav — shared across all 11 pages
 When adding/removing nav items, update ALL 11 HTML files:
-`index.html`, `bloghome.html`, `post.html`, `category.html`, `top10index.html`, `top10-ai-tools.html`, `courses.html`, `course-chatgpt-marketers.html`, `search.html`, `about.html`, `contact.html`
+`index.html`, `bloghome.html`, `post.html`, `category.html`, `top10index.html`, `top10-ai-tools.html`, `courses.html`, `course-chatgpt-marketers.html`, `glossary.html`, `search.html`, `about.html`, `contact.html`, `privacy.html`
 
-Nav order: `Home · Blog · Top 10 · Courses · About · Contact`
+Nav order: `Home · Blog · Top 10 · Courses · Glossary · About · Contact`
 
 Active page uses `class="text-gray-900 font-semibold"` on the nav `<a>`.
 
