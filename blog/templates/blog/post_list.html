@@ -54,21 +54,41 @@
       </div>
 
       {% if page_obj.has_other_pages %}
+      {% with total=page_obj.paginator.num_pages current=page_obj.number %}
       <nav class="mt-16 mb-8 flex items-center justify-center gap-2">
         {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-200 text-sm font-medium transition">&laquo;</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-200 text-sm font-medium transition" aria-label="Previous">&laquo;</a>
         {% endif %}
+
+        {% if current > 2 %}
+        <a href="?page=1" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-200 text-sm font-medium transition">1</a>
+        {% if current > 3 %}
+        <span class="inline-flex items-center justify-center w-10 h-10 text-gray-300 text-sm">...</span>
+        {% endif %}
+        {% endif %}
+
         {% for num in page_obj.paginator.page_range %}
-          {% if num == page_obj.number %}
-          <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-red-600 text-white text-sm font-semibold">{{ num }}</span>
-          {% else %}
-          <a href="?page={{ num }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-200 text-sm font-medium transition">{{ num }}</a>
+          {% if num >= current|add:-1 and num <= current|add:1 %}
+            {% if num == current %}
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-red-600 text-white text-sm font-semibold">{{ num }}</span>
+            {% else %}
+            <a href="?page={{ num }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-200 text-sm font-medium transition">{{ num }}</a>
+            {% endif %}
           {% endif %}
         {% endfor %}
+
+        {% if current < total|add:-1 %}
+          {% if current < total|add:-2 %}
+          <span class="inline-flex items-center justify-center w-10 h-10 text-gray-300 text-sm">...</span>
+          {% endif %}
+        <a href="?page={{ total }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-200 text-sm font-medium transition">{{ total }}</a>
+        {% endif %}
+
         {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-500 hover:text-gray-700 transition" aria-label="Next page">&raquo;</a>
+        <a href="?page={{ page_obj.next_page_number }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-500 hover:text-gray-700 transition" aria-label="Next">&raquo;</a>
         {% endif %}
       </nav>
+      {% endwith %}
       {% endif %}
     </div>
 
