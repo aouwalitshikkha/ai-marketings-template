@@ -56,7 +56,7 @@ class PostMarkdownView(DetailView):
         content = (
             f"---\n"
             f"title: {post.title}\n"
-            f"author: {post.author.get_full_name() or post.author.username}\n"
+            f"author: Abdul Aouwal\n"
             f"date: {post.publish_date.date()}\n"
             f"slug: {post.slug}\n"
             f"---\n\n"

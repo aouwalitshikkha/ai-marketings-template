@@ -223,7 +223,7 @@ class Post(models.Model):
             "dateModified": self.updated_at.isoformat(),
             "author": {
                 "@type": "Person",
-                "name": self.author.get_full_name() or self.author.username,
+                "name": "Abdul Aouwal",
                 "url": "https://www.facebook.com/itshikkha"
             },
             "publisher": {

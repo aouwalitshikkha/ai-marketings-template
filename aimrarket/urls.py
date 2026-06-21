@@ -18,12 +18,18 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework.authtoken.views import obtain_auth_token
 from glossary.views import GlossaryMarkdownView
+from .views import home_view
 
 urlpatterns = [
+    path('', home_view, name='home'),
     path('admin/', admin.site.urls),
     re_path(r'^glossary\.md$', GlossaryMarkdownView.as_view(), name='glossary_markdown'),
     path('blog/', include('blog.urls')),
     path('glossary/', include('glossary.urls')),
+    path('top10/', include('top10s.urls')),
+    path('courses/', include('courses.urls')),
+    path('search/', include('search.urls')),
+    path('', include('pages.urls')),
     path('api/', include('api.urls')),
     path('api/auth/', include('rest_framework.urls')),
     path('api/token/', obtain_auth_token, name='api_token'),

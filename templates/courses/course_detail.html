@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% load static %}
+{% load course_extras %}
+{% block title %}{{ course.get_meta_title }} — aimrarket{% endblock %}
+{% block meta_description %}{{ course.get_meta_description }}{% endblock %}
+{% block og_title %}{{ course.get_meta_title }} — aimrarket{% endblock %}
+{% block og_description %}{{ course.get_meta_description }}{% endblock %}
+{% block twitter_title %}{{ course.get_meta_title }} — aimrarket{% endblock %}
+{% block twitter_description %}{{ course.get_meta_description }}{% endblock %}
+
+{% block nav_courses %}text-gray-900 font-semibold{% endblock %}
+
+{% block content %}
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+  <nav class="text-sm text-gray-500 mb-8 max-w-4xl mx-auto" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-2">
+      <li><a href="/" class="hover:text-red-600 transition">Home</a></li>
+      <li><span class="mx-1 text-gray-300">›</span></li>
+      <li><a href="/courses/" class="hover:text-indigo-600 transition">Courses</a></li>
+      <li><span class="mx-1 text-gray-300">›</span></li>
+      <li class="text-gray-600 truncate max-w-[12rem] sm:max-w-xs" aria-current="page">{{ course.title }}</li>
+    </ol>
+  </nav>
+
+  <article class="max-w-4xl mx-auto">
+
+    <div class="flex items-center gap-3 mb-4">
+      {% if course.level == 'Beginner' %}
+      <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700">{{ course.level }}</span>
+      {% elif course.level == 'Intermediate' %}
+      <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-700">{{ course.level }}</span>
+      {% else %}
+      <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-purple-100 text-purple-700">{{ course.level }}</span>
+      {% endif %}
+      <span class="text-xs text-gray-500">{{ course.lessons_count }} lesson{{ course.lessons_count|pluralize }}{% if course.duration %} · {{ course.duration }}{% endif %}</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight mb-5">{{ course.title }}</h1>
+
+    <div class="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-10 pb-8 border-b border-gray-200">
+      <img width="100" height="100" class="w-10 h-10 rounded-full object-cover" src="https://picsum.photos/seed/abdul-aouwal/100/100" alt="Abdul Aouwal" loading="lazy" />
+      <div>
+        <span class="block font-medium text-gray-900">Abdul Aouwal</span>
+        <span>AI Marketing Specialist</span>
+      </div>
+    </div>
+
+    {% if course.image %}
+    <figure class="mb-12 -mx-4 sm:mx-0">
+      <img width="1200" height="600" class="w-full sm:rounded-xl shadow-sm object-cover max-h-[460px]" src="{{ course.image.url }}" alt="{{ course.title }}" loading="lazy" />
+    </figure>
+    {% endif %}
+
+    {% if course.description %}
+    <div class="text-gray-700 leading-relaxed space-y-4 mb-10">
+      <p class="text-lg text-gray-600">{{ course.description }}</p>
+    </div>
+    {% endif %}
+
+    {% if course.objectives %}
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">What You'll Learn</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {% for objective in course.objectives|lines_to_list %}
+        <div class="flex items-start gap-3 bg-white rounded-lg p-4 border border-gray-100">
+          <svg class="w-5 h-5 text-green-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-sm text-gray-700">{{ objective }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    {% if course.overview %}
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Course Overview</h2>
+      <div class="ckeditor-content text-gray-700 leading-relaxed">{{ course.overview|safe|linebreaks }}</div>
+    </section>
+    {% endif %}
+
+    {% if chapters %}
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Course Curriculum</h2>
+      <p class="text-sm text-gray-500 mb-6">{{ course.lessons_count }} lesson{{ course.lessons_count|pluralize }}</p>
+
+      <div class="space-y-4">
+        {% for chapter in chapters %}
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+          <a href="{{ chapter.get_absolute_url }}" class="block px-5 py-4 bg-indigo-50 border-b border-indigo-100 hover:bg-indigo-100 transition">
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <h3 class="font-bold text-gray-900"><span class="text-indigo-600">Chapter {{ chapter.number }}:</span> {{ chapter.title }}</h3>
+                {% if chapter.summary %}<p class="text-xs text-gray-500 mt-1 line-clamp-1">{{ chapter.summary }}</p>{% endif %}
+              </div>
+              <svg class="w-5 h-5 text-indigo-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+          {% if chapter.key_topics %}
+          <ul class="divide-y divide-gray-50">
+            {% for topic in chapter.key_topics|lines_to_list %}
+            <li class="px-5 py-3 flex items-center gap-3 text-sm text-gray-700">
+              <svg class="w-4 h-4 text-indigo-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/></svg>
+              {{ topic }}
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    {% if course.requirements %}
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Requirements</h2>
+      <ul class="space-y-2 ml-6">
+        {% for req in course.requirements|lines_to_list %}
+        <li class="flex gap-3 text-gray-700"><span class="text-red-500 shrink-0">&rarr;</span><span>{{ req }}</span></li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    {% if course.about %}
+    <section class="mb-12 p-6 sm:p-8 bg-white rounded-xl border border-gray-100">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">About this Course</h2>
+      <div class="ckeditor-content text-gray-700 leading-relaxed">{{ course.about|safe|linebreaks }}</div>
+    </section>
+    {% endif %}
+
+    {% if related_courses %}
+    <section class="pt-8 border-t border-gray-200">
+      <h2 class="text-xl font-bold text-gray-900 mb-6">More Courses</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        {% for related in related_courses %}
+        <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <a href="{{ related.get_absolute_url }}" class="block overflow-hidden">
+            <div class="aspect-[16/9] overflow-hidden bg-gray-100">
+              {% if related.image %}
+              <img width="800" height="450" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ related.image.url }}" alt="" loading="lazy" />
+              {% else %}
+              <img width="800" height="450" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/{{ related.slug }}/800/450" alt="" loading="lazy" />
+              {% endif %}
+            </div>
+          </a>
+          <div class="p-4 sm:p-5">
+            {% if related.level == 'Beginner' %}
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700 mb-2">{{ related.level }}</span>
+            {% elif related.level == 'Intermediate' %}
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 mb-2">{{ related.level }}</span>
+            {% else %}
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-purple-700 mb-2">{{ related.level }}</span>
+            {% endif %}
+            <h3 class="text-base font-bold text-gray-900 leading-snug group-hover:text-indigo-600 transition line-clamp-2"><a href="{{ related.get_absolute_url }}">{{ related.title }}</a></h3>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+  </article>
+
+</main>
+{% endblock %}

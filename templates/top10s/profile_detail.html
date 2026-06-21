@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ profile.meta_title|default:profile.title }} — aimrarket{% endblock %}
+{% block meta_description %}{{ profile.meta_description|default:profile.intro|striptags|truncatewords:30 }}{% endblock %}
+{% block og_title %}{{ profile.meta_title|default:profile.title }} — aimrarket{% endblock %}
+{% block og_description %}{{ profile.meta_description|default:profile.intro|striptags|truncatewords:30 }}{% endblock %}
+{% block twitter_title %}{{ profile.meta_title|default:profile.title }} — aimrarket{% endblock %}
+{% block twitter_description %}{{ profile.meta_description|default:profile.intro|striptags|truncatewords:30 }}{% endblock %}
+
+{% block nav_top10 %}text-gray-900 font-semibold{% endblock %}
+
+{% block extra_head %}
+<link rel="canonical" href="{{ request.build_absolute_uri }}" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"{{ profile.title|escapejs }}","itemListElement":[{% for tool in profile.tools.all %}{% if not forloop.first %},{% endif %}{"@type":"ListItem","position":{{ forloop.counter }},"name":"{{ tool.name|escapejs }}"}{% endfor %}]}</script>
+{% endblock %}
+
+{% block content %}
+<div id="reading-progress" class="fixed top-0 left-0 h-1 bg-amber-600 z-[60] w-0 transition-[width] duration-75 ease-out" aria-hidden="true"></div>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+  <nav class="text-sm text-gray-500 mb-8 max-w-4xl mx-auto" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-2">
+      <li><a href="/" class="hover:text-red-600 transition">Home</a></li>
+      <li><span class="mx-1 text-gray-300">›</span></li>
+      <li><a href="/top10/" class="hover:text-amber-600 transition">Top 10</a></li>
+      <li><span class="mx-1 text-gray-300">›</span></li>
+      <li class="text-gray-600 truncate max-w-[12rem] sm:max-w-xs" aria-current="page">{{ profile.title }}</li>
+    </ol>
+  </nav>
+
+  <article class="max-w-4xl mx-auto">
+
+    <div class="flex items-center gap-4 mb-4">
+      <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-700">Top 10</span>
+      <span class="text-xs text-gray-500">Updated {{ profile.updated_at|date:"F Y" }}</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight mb-5">{{ profile.title }}</h1>
+
+    <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-gray-500 mb-10 pb-8 border-b border-gray-200">
+      <span class="flex items-center gap-2">
+        <img width="80" height="80" class="w-8 h-8 rounded-full object-cover" src="https://picsum.photos/seed/abdul-aouwal/80/80" alt="" loading="lazy" />
+        <span class="font-semibold text-gray-900">Abdul Aouwal</span>
+      </span>
+      <span class="hidden sm:inline text-gray-300">|</span>
+      <span class="flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        <span>{{ profile.updated_at|date:"M d, Y" }}</span>
+      </span>
+    </div>
+
+    {% if profile.image %}
+    <figure class="mb-12 -mx-4 sm:mx-0">
+      <img width="1200" height="600" class="w-full sm:rounded-xl shadow-sm object-cover max-h-[460px]" src="{{ profile.image.url }}" alt="{{ profile.title }}" loading="lazy" />
+    </figure>
+    {% endif %}
+
+    {% if profile.intro_html %}
+    <div class="ckeditor-content text-lg text-gray-600 leading-relaxed space-y-5 mb-10">
+      {{ profile.intro_html|safe }}
+    </div>
+    {% endif %}
+
+    {% if profile.tldr_html %}
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-6 mb-12">
+      <h2 class="text-lg font-bold text-amber-900 mb-3 flex items-center gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        TL;DR
+      </h2>
+      <div class="ckeditor-content text-gray-700 leading-relaxed">{{ profile.tldr_html|safe }}</div>
+    </div>
+    {% endif %}
+
+    {% if profile.comparison_table and profile.comparison_table.headers and profile.comparison_table.rows %}
+    <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden mb-12">
+      <div class="bg-amber-50 px-5 py-3 border-b border-gray-100">
+        <h2 class="font-bold text-gray-900">Quick Overview</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
+            <tr>
+              {% for header in profile.comparison_table.headers %}
+              <th class="text-left px-5 py-3 font-medium">{{ header }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {% for row in profile.comparison_table.rows %}
+            <tr class="hover:bg-gray-50 transition">
+              {% for cell in row %}
+              <td class="px-5 py-3 {% if forloop.parentloop.first and forloop.first %}font-bold text-amber-600{% elif forloop.first %}font-medium text-gray-900{% else %}text-gray-500{% endif %}">{{ cell }}</td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+
+    {% for tool in profile.tools.all %}
+    <section class="mb-14 scroll-mt-20" id="item-{{ forloop.counter|stringformat:'02d' }}">
+      <div class="flex items-start gap-4 sm:gap-6 lg:gap-8 flex-col sm:flex-row">
+        <div class="shrink-0">
+          <span class="text-6xl sm:text-7xl lg:text-8xl font-black text-amber-200 leading-none block">{{ forloop.counter|stringformat:'02d' }}</span>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex flex-col sm:flex-row items-start gap-4 mb-5">
+            {% if tool.image %}
+            <img width="200" height="200" class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover shrink-0" src="{{ tool.image.url }}" alt="{{ tool.name }}" loading="lazy" />
+            {% else %}
+            <img width="200" height="200" class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover shrink-0" src="https://picsum.photos/seed/{{ tool.name|slugify }}/200/200" alt="{{ tool.name }}" loading="lazy" />
+            {% endif %}
+            <div>
+              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">{{ tool.name }}</h2>
+            </div>
+          </div>
+
+          <div class="ckeditor-content text-gray-600 leading-relaxed mb-4">
+            {{ tool.description|safe }}
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <h3 class="text-sm font-semibold text-gray-900 mb-2">{{ tool.feature_label }}</h3>
+              <ul class="space-y-1.5 text-sm text-gray-600">
+                {% for feature in tool.features_list %}
+                <li class="flex gap-2"><span class="text-amber-500 shrink-0">&rarr;</span>{{ feature }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-gray-900 mb-2">{{ tool.pros_label }}</h3>
+              <div class="bg-green-50 rounded-lg p-4 border border-green-100">
+                <ul class="text-sm text-green-700 space-y-1">
+                  {% for pro in tool.pros_list %}
+                  <li class="flex gap-2"><span class="shrink-0">&bull;</span>{{ pro }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {% if tool.personal_review %}
+          <div class="bg-gray-50 rounded-lg p-4 mb-4">
+            <h3 class="text-sm font-semibold text-gray-900 mb-2">Personal Review</h3>
+            <div class="ckeditor-content text-sm text-gray-600 leading-relaxed">{{ tool.personal_review|safe }}</div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+    {% endfor %}
+
+    {% if profile.conclusion_html %}
+    <section class="mb-14 pt-10 border-t border-gray-200">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Conclusion</h2>
+      <div class="ckeditor-content text-gray-600 leading-relaxed">{{ profile.conclusion_html|safe }}</div>
+    </section>
+    {% endif %}
+
+    {% if recent_profiles %}
+    <section class="pt-8 border-t border-gray-200">
+      <h2 class="text-xl font-bold text-gray-900 mb-6">More Top 10 Listicles</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        {% for related in recent_profiles %}
+        <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <a href="{{ related.get_absolute_url }}" class="block overflow-hidden relative">
+            <div class="aspect-[16/10] overflow-hidden bg-gray-100">
+              {% if related.image %}
+              <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ related.image.url }}" alt="" loading="lazy" />
+              {% else %}
+              <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/{{ related.slug }}/800/500" alt="" loading="lazy" />
+              {% endif %}
+            </div>
+          </a>
+          <div class="p-4 sm:p-5">
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-700 mb-2">Top 10</span>
+            <h3 class="text-base font-bold text-gray-900 leading-snug group-hover:text-amber-600 transition line-clamp-2"><a href="{{ related.get_absolute_url }}">{{ related.title }}</a></h3>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+  </article>
+
+</main>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function(){var e=document.getElementById("reading-progress");if(e){var t=function(){var t=document.documentElement,n=t.scrollHeight-t.clientHeight,o=n>0?(t.scrollTop||document.body.scrollTop)/n:0;e.style.width=(100*o).toFixed(2)+"%"};window.addEventListener("scroll",t,{passive:!0}),window.addEventListener("resize",t,{passive:!0}),t()}})();
+</script>
+{% endblock %}
