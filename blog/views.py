@@ -1,6 +1,6 @@
 from django.db.models import Count
 from django.views.generic import ListView, DetailView
-from .models import Post, Category
+from .models import Post, Category, Tag
 
 
 class BlogHomeView(ListView):
@@ -15,6 +15,8 @@ class BlogHomeView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.annotate(post_count=Count('posts'))
+        context['tags'] = Tag.objects.all()
+        context['recent_posts'] = Post.objects.filter(status=Post.Status.PUBLISHED).order_by('-publish_date')[:5]
         return context
 
 
