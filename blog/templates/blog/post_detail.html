@@ -34,9 +34,17 @@
 
     <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4">{{ post.title }}</h1>
 
-    <p class="text-sm text-gray-500 mb-10 pb-8 border-b border-gray-200">
+    <p class="text-sm text-gray-500 mb-10 pb-8 border-b border-gray-200 space-x-1">
+      <span>Author:</span>
       <span class="font-semibold text-gray-900">{{ post.author.get_full_name|default:post.author.username }}</span>
-      · {{ post.publish_date|date:"M d, Y" }} · {{ post.body|striptags|read_time }} min read
+      <span>·</span>
+      <span>Last Update:</span>
+      <span>{{ post.publish_date|date:"M d, Y" }}</span>
+      <span>·</span>
+      <span>Time to read:</span>
+      <span>{{ post.body|striptags|read_time }} min</span>
+      <span>·</span>
+      <a href="{{ post.get_markdown_url }}" class="text-red-600 hover:underline font-medium">View as Markdown</a>
     </p>
 
     {% if post.featured_image %}

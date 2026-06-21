@@ -197,6 +197,9 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post_detail', kwargs={'slug': self.slug})
+
+    def get_markdown_url(self):
+        return reverse('post_markdown', kwargs={'slug': self.slug})
     
     def to_jsonld(self, request):
         
