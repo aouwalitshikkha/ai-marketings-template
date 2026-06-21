@@ -39,8 +39,8 @@
         if (entry.isIntersecting) {
           var id = entry.target.id;
           navLinks.forEach(function(link) {
-            var cls = "bg-red-100 text-red-700 hover:bg-red-200";
-            var activeCls = "bg-red-600 text-white hover:bg-red-700";
+            var cls = "bg-red-100 text-red-800 hover:bg-red-200";
+            var activeCls = "bg-red-700 text-white hover:bg-red-800";
             link.className = link.className.replace(activeCls, cls);
             if (link.getAttribute("data-target") === id) {
               link.className = link.className.replace(cls, activeCls);
