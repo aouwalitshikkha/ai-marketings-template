@@ -38,86 +38,31 @@
 
   <div id="glossary-nav" class="sticky top-16 z-40 bg-[#faf8f5]/95 backdrop-blur py-4 mb-8 border-b border-gray-200">
     <nav class="flex flex-wrap gap-2" aria-label="Glossary letter groups">
-      <a href="#group-a-e" class="group-link px-4 py-2 rounded-lg text-sm font-semibold bg-red-100 text-red-700 hover:bg-red-200 transition" data-target="group-a-e">A–E <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-200 text-red-800 text-xs font-bold ml-1">2</span></a>
-      <a href="#group-f-j" class="group-link px-4 py-2 rounded-lg text-sm font-semibold bg-red-100 text-red-700 hover:bg-red-200 transition" data-target="group-f-j">F–J <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-200 text-red-800 text-xs font-bold ml-1">1</span></a>
-      <a href="#group-k-o" class="group-link px-4 py-2 rounded-lg text-sm font-semibold bg-red-100 text-red-700 hover:bg-red-200 transition" data-target="group-k-o">K–O <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-200 text-red-800 text-xs font-bold ml-1">2</span></a>
-      <a href="#group-p-t" class="group-link px-4 py-2 rounded-lg text-sm font-semibold bg-red-100 text-red-700 hover:bg-red-200 transition" data-target="group-p-t">P–T <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-200 text-red-800 text-xs font-bold ml-1">4</span></a>
-      <a href="#group-u-z" class="group-link px-4 py-2 rounded-lg text-sm font-semibold bg-red-100 text-red-700 hover:bg-red-200 transition" data-target="group-u-z">U–Z <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-200 text-red-800 text-xs font-bold ml-1">1</span></a>
+      {% for group in groups %}
+      <a href="#{{ group.id }}" class="group-link px-4 py-2 rounded-lg text-sm font-semibold bg-red-100 text-red-700 hover:bg-red-200 transition" data-target="{{ group.id }}">{{ group.label }} <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-200 text-red-800 text-xs font-bold ml-1">{{ group.count }}</span></a>
+      {% endfor %}
     </nav>
   </div>
 
   <div class="max-w-4xl mx-auto space-y-10" id="glossary-list">
-
-    <section id="group-a-e" class="glossary-group">
-      <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-3"><span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-red-100 text-red-700 text-sm font-bold shrink-0">A–E</span></h2>
+    {% for group in groups %}
+    <section id="{{ group.id }}" class="glossary-group">
+      <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-3"><span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-red-100 text-red-700 text-sm font-bold shrink-0">{{ group.label }}</span></h2>
       <div class="bg-white rounded-xl border border-gray-100 shadow-sm divide-y divide-gray-100">
-        <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default">
-          <h3 class="font-semibold text-gray-900">AI Marketing</h3>
-          <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">The use of artificial intelligence technologies — such as machine learning, natural language processing, and generative AI — to automate, optimize, and personalize marketing activities. Encompasses content creation, audience targeting, predictive analytics, and campaign management.</p>
+        {% for term in group.terms %}
+        <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default" id="{{ term.slug }}">
+          <h3 class="font-semibold text-gray-900">{{ term.term }}{% if term.acronym %} <span class="text-sm text-gray-500 font-normal">({{ term.acronym }})</span>{% endif %}</h3>
+          <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">{{ term.short_definition }}</p>
+          {% if term.long_definition %}
+          <p class="text-sm text-gray-500 mt-2 leading-relaxed">{{ term.long_definition }}</p>
+          {% endif %}
         </div>
-        <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default">
-          <h3 class="font-semibold text-gray-900">ChatGPT</h3>
-          <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">A conversational AI model developed by OpenAI that generates human-like text responses. Widely used by marketers for content ideation, copywriting, audience research, email drafting, and brainstorming. The GPT-4o model offers real-time web search, file analysis, and multi-turn conversations.</p>
-        </div>
+        {% empty %}
+        <div class="px-5 py-4 text-sm text-gray-400 italic">No terms in this range yet.</div>
+        {% endfor %}
       </div>
     </section>
-
-    <section id="group-f-j" class="glossary-group">
-      <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-3"><span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-red-100 text-red-700 text-sm font-bold shrink-0">F–J</span></h2>
-      <div class="bg-white rounded-xl border border-gray-100 shadow-sm divide-y divide-gray-100">
-        <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default">
-          <h3 class="font-semibold text-gray-900">Generative AI (GenAI)</h3>
-          <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">A subset of artificial intelligence that creates new content — text, images, audio, video, or code — based on patterns learned from training data. Tools like ChatGPT (text), Midjourney (images), and Adobe Firefly (design) fall under this category. For marketers, GenAI enables rapid content production at scale.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="group-k-o" class="glossary-group">
-      <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-3"><span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-red-100 text-red-700 text-sm font-bold shrink-0">K–O</span></h2>
-      <div class="bg-white rounded-xl border border-gray-100 shadow-sm divide-y divide-gray-100">
-        <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default">
-          <h3 class="font-semibold text-gray-900">Large Language Model (LLM)</h3>
-          <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">A type of AI model trained on vast amounts of text data to understand and generate human language. LLMs power tools like ChatGPT, Jasper, and GrammarlyGO. They excel at tasks such as summarization, translation, question answering, and content generation by predicting the next most likely word in a sequence.</p>
-        </div>
-        <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default">
-          <h3 class="font-semibold text-gray-900">Natural Language Processing (NLP)</h3>
-          <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">A branch of AI that enables computers to understand, interpret, and generate human language. NLP is the underlying technology behind chatbots, sentiment analysis tools, content summarizers, and voice assistants. In marketing, it is used for analyzing customer feedback, automating responses, and optimizing ad copy.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="group-p-t" class="glossary-group">
-      <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-3"><span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-red-100 text-red-700 text-sm font-bold shrink-0">P–T</span></h2>
-      <div class="bg-white rounded-xl border border-gray-100 shadow-sm divide-y divide-gray-100">
-        <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default">
-          <h3 class="font-semibold text-gray-900">Predictive Analytics</h3>
-          <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">The use of data, statistical algorithms, and machine learning to identify the likelihood of future outcomes based on historical data. In marketing, it powers customer lifetime value prediction, churn risk scoring, lead scoring, and personalized product recommendations.</p>
-        </div>
-        <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default">
-          <h3 class="font-semibold text-gray-900">Prompt Engineering</h3>
-          <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">The practice of carefully crafting input instructions (prompts) to guide AI models toward desired outputs. Effective prompt engineering involves specifying tone, audience, format, constraints, and examples. Techniques include chain-of-thought prompting, persona prompting, and few-shot learning.</p>
-        </div>
-        <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default">
-          <h3 class="font-semibold text-gray-900">Retrieval-Augmented Generation (RAG)</h3>
-          <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">A technique that combines information retrieval with text generation. Instead of relying solely on an LLM internal knowledge, RAG fetches relevant information from an external knowledge base before generating a response. This improves accuracy and enables AI tools to answer questions about proprietary or up-to-date information.</p>
-        </div>
-        <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default">
-          <h3 class="font-semibold text-gray-900">Sentiment Analysis</h3>
-          <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">An NLP technique that uses AI to determine the emotional tone behind a piece of text — positive, negative, or neutral. Marketers use sentiment analysis to monitor brand perception on social media, analyze customer reviews, gauge campaign reception, and identify emerging PR issues before they escalate.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="group-u-z" class="glossary-group">
-      <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-3"><span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-red-100 text-red-700 text-sm font-bold shrink-0">U–Z</span></h2>
-      <div class="bg-white rounded-xl border border-gray-100 shadow-sm divide-y divide-gray-100">
-        <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default">
-          <h3 class="font-semibold text-gray-900">Zero-Party Data</h3>
-          <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">Data that customers intentionally and proactively share with a brand — such as preferences, purchase intentions, personal context, and feedback. Unlike third-party data, it is collected with explicit consent and is highly accurate. AI tools help marketers analyze zero-party data to deliver hyper-personalized experiences.</p>
-        </div>
-      </div>
-    </section>
-
+    {% endfor %}
   </div>
 
   <div id="no-term-match" class="hidden text-center py-16 max-w-4xl mx-auto">
