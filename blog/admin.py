@@ -22,7 +22,7 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ['status', 'category', 'publish_date', 'indexable']
     search_fields = ['title', 'body']
     prepopulated_fields = {'slug': ['title']}
-    readonly_fields = ['created_at', 'updated_at']
+    readonly_fields = ['publish_date', 'created_at', 'updated_at']
     fieldsets = [
         ('Content', {'fields': ['title', 'slug', 'author', 'body', 'short_answer']}),
         ('Taxonomy', {'fields': ['category', 'tags']}),
