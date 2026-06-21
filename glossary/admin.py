@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import GlossaryTerm
+from .models import GlossaryTerm, GlossaryPageConfig
 
 
 @admin.register(GlossaryTerm)
@@ -16,3 +16,8 @@ class GlossaryTermAdmin(admin.ModelAdmin):
         ('Status', {'fields': ['status', 'review_score']}),
         ('Timestamps', {'fields': ['created_at', 'updated_at', 'version']}),
     ]
+
+
+@admin.register(GlossaryPageConfig)
+class GlossaryPageConfigAdmin(admin.ModelAdmin):
+    list_display = ['seo_title', 'updated_at']

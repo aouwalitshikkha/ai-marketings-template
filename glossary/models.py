@@ -76,4 +76,15 @@ class GlossaryTerm(models.Model):
         return f"/glossary/#{self.slug}"
 
 
+class GlossaryPageConfig(models.Model):
+    seo_title = models.CharField(max_length=160, blank=True)
+    seo_description = models.TextField(blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Glossary Page Config"
+        verbose_name_plural = "Glossary Page Config"
+
+    def __str__(self):
+        return self.seo_title or "Glossary Page Config"
 

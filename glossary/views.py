@@ -1,6 +1,6 @@
 from django.core.cache import cache
 from django.views.generic import TemplateView
-from .models import GlossaryTerm
+from .models import GlossaryPageConfig, GlossaryTerm
 
 CACHE_KEY = 'glossary_groups'
 CACHE_TTL = 3600
@@ -41,4 +41,9 @@ class GlossaryIndexView(TemplateView):
             groups = build_groups()
             cache.set(CACHE_KEY, groups, CACHE_TTL)
         context['groups'] = groups
+
+        config = GlossaryPageConfig.objects.first()
+        if config and config.seo_title:
+            context['page_title'] = config.seo_title
+            context['page_description'] = config.seo_description
         return context
