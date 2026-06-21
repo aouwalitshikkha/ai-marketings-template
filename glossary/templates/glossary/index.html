@@ -83,32 +83,35 @@
 (function(){
   var filter = document.getElementById("glossary-filter");
   var groups = document.querySelectorAll(".glossary-group");
-  var terms = document.querySelectorAll(".term-item");
   var noMatch = document.getElementById("no-term-match");
   var navLinks = document.querySelectorAll(".group-link");
+  var filterTimer;
 
   if (filter) {
     filter.addEventListener("input", function() {
-      var q = this.value.toLowerCase().trim();
-      var anyVisible = false;
+      clearTimeout(filterTimer);
+      filterTimer = setTimeout(function() {
+        var q = filter.value.toLowerCase().trim();
+        var anyVisible = false;
 
-      groups.forEach(function(group) {
-        var items = group.querySelectorAll(".term-item");
-        var groupVisible = false;
-        items.forEach(function(item) {
-          var text = item.textContent.toLowerCase();
-          var match = !q || text.indexOf(q) !== -1;
-          item.style.display = match ? "" : "none";
-          if (match) groupVisible = true;
+        groups.forEach(function(group) {
+          var items = group.querySelectorAll(".term-item");
+          var groupVisible = false;
+          items.forEach(function(item) {
+            var text = item.textContent.toLowerCase();
+            var match = !q || text.indexOf(q) !== -1;
+            item.style.display = match ? "" : "none";
+            if (match) groupVisible = true;
+          });
+          group.style.display = groupVisible ? "" : "none";
+          if (groupVisible) anyVisible = true;
         });
-        group.style.display = groupVisible ? "" : "none";
-        if (groupVisible) anyVisible = true;
-      });
 
-      if (noMatch) {
-        noMatch.classList.toggle("hidden", anyVisible);
-        document.getElementById("no-term-query").textContent = q ? 'No terms match "' + q + '".' : "";
-      }
+        if (noMatch) {
+          noMatch.classList.toggle("hidden", anyVisible);
+          document.getElementById("no-term-query").textContent = q ? 'No terms match "' + q + '".' : "";
+        }
+      }, 150);
     });
   }
 
@@ -134,15 +137,22 @@
 
   var backBtn = document.getElementById("back-to-top");
   if (backBtn) {
+    var ticking = false;
     window.addEventListener("scroll", function() {
-      if (window.scrollY > 400) {
-        backBtn.classList.remove("translate-y-20", "opacity-0", "pointer-events-none");
-        backBtn.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
-      } else {
-        backBtn.classList.add("translate-y-20", "opacity-0", "pointer-events-none");
-        backBtn.classList.remove("translate-y-0", "opacity-100", "pointer-events-auto");
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          if (window.scrollY > 400) {
+            backBtn.classList.remove("translate-y-20", "opacity-0", "pointer-events-none");
+            backBtn.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
+          } else {
+            backBtn.classList.add("translate-y-20", "opacity-0", "pointer-events-none");
+            backBtn.classList.remove("translate-y-0", "opacity-100", "pointer-events-auto");
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
-    });
+    }, { passive: true });
     backBtn.addEventListener("click", function() { window.scrollTo({ top: 0, behavior: "smooth" }); });
   }
 })();
