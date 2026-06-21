@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.views.generic import TemplateView
 from .models import GlossaryTerm
 
 LETTER_RANGES = [
@@ -10,20 +10,22 @@ LETTER_RANGES = [
 ]
 
 
-def index(request):
-    terms = GlossaryTerm.objects.filter(status=GlossaryTerm.Status.PUBLISHED).order_by('term')
+class GlossaryIndexView(TemplateView):
+    template_name = 'glossary/index.html'
 
-    groups = []
-    for group_id, label, letters in LETTER_RANGES:
-        filtered = [t for t in terms if t.term[0].upper() in letters]
-        groups.append({
-            'id': group_id,
-            'label': label,
-            'terms': filtered,
-            'count': len(filtered),
-        })
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        terms = GlossaryTerm.objects.filter(status=GlossaryTerm.Status.PUBLISHED).order_by('term')
 
-    context = {
-        'groups': groups,
-    }
-    return render(request, 'glossary/index.html', context)
+        groups = []
+        for group_id, label, letters in LETTER_RANGES:
+            filtered = [t for t in terms if t.term[0].upper() in letters]
+            groups.append({
+                'id': group_id,
+                'label': label,
+                'terms': filtered,
+                'count': len(filtered),
+            })
+
+        context['groups'] = groups
+        return context
