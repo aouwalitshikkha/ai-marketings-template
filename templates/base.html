@@ -73,9 +73,7 @@
     <div class="border-t border-gray-800"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-center text-xs text-gray-400">&copy; 2026 aimrarket. All rights reserved.</div></div>
   </footer>
 
-<script>
-(function(){var b=document.getElementById("search-btn"),s=document.getElementById("search-bar"),i=document.getElementById("search-input");if(b&&s){b.addEventListener("click",function(e){e.stopPropagation();s.classList.toggle("hidden");if(!s.classList.contains("hidden")){setTimeout(function(){i.focus()},100)}});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!s.classList.contains("hidden")){s.classList.add("hidden")}});document.addEventListener("click",function(e){if(!s.classList.contains("hidden")&&!s.contains(e.target)&&e.target!==b&&!b.contains(e.target)){s.classList.add("hidden")}})}})();
-</script>
+<script defer src="{% static 'js/search-toggle.js' %}"></script>
 {% block extra_scripts %}{% endblock %}
 </body>
 </html>
