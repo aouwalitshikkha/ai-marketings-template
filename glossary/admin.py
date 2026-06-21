@@ -9,7 +9,7 @@ class GlossaryTermAdmin(admin.ModelAdmin):
     search_fields = ['term', 'short_definition', 'long_definition']
     readonly_fields = ['created_at', 'updated_at', 'version']
     fieldsets = [
-        ('Term', {'fields': ['term', 'slug', 'short_definition', 'long_definition']}),
+        ('Term', {'fields': ['term', 'short_definition', 'long_definition']}),
         ('Details', {'fields': ['synonyms', 'acronym', 'example', 'use_cases', 'related_terms']}),
         ('Metadata', {'fields': ['sources', 'notes']}),
         ('Status', {'fields': ['status', 'review_score']}),
