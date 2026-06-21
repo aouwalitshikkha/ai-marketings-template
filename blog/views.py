@@ -1,15 +1,21 @@
+from django.db.models import Count
 from django.views.generic import ListView, DetailView
 from .models import Post, Category
 
 
 class BlogHomeView(ListView):
     model = Post
-    template_name = 'blog/home.html'
+    template_name = 'blog/post_list.html'
     context_object_name = 'posts'
     paginate_by = 6
 
     def get_queryset(self):
         return Post.objects.filter(status=Post.Status.PUBLISHED).select_related('author', 'category').prefetch_related('tags')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.annotate(post_count=Count('posts'))
+        return context
 
 
 class PostDetailView(DetailView):
