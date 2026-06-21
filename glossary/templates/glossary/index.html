@@ -45,7 +45,7 @@
     </nav>
   </div>
 
-  <div class="max-w-4xl mx-auto space-y-10" id="glossary-list">
+  <div class="max-w-4xl mx-auto space-y-10 mb-16" id="glossary-list">
     {% for group in groups %}
     <section id="{{ group.id }}" class="glossary-group">
       <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-3"><span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-red-100 text-red-700 text-sm font-bold shrink-0">{{ group.label }}</span></h2>
@@ -63,7 +63,7 @@
     {% endfor %}
   </div>
 
-  <div id="no-term-match" class="hidden text-center py-16 max-w-4xl mx-auto">
+  <div id="no-term-match" class="hidden text-center py-16 mb-16 max-w-4xl mx-auto">
     <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
     <h2 class="text-2xl font-bold text-gray-900 mb-2">No terms match</h2>
     <p class="text-gray-500" id="no-term-query">Try a different search term.</p>
