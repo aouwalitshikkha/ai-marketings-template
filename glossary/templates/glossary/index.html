@@ -51,7 +51,7 @@
       <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-3"><span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-red-100 text-red-700 text-sm font-bold shrink-0">{{ group.label }}</span></h2>
       <div class="bg-white rounded-xl border border-gray-100 shadow-sm divide-y divide-gray-100">
         {% for term in group.terms %}
-        <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default" id="{{ term.slug }}">
+        <div class="term-item px-5 py-4 hover:bg-red-50/40 transition cursor-default" id="term-{{ term.pk }}">
           <h3 class="font-semibold text-gray-900">{{ term.term }}{% if term.acronym %} <span class="text-sm text-gray-500 font-normal">({{ term.acronym }})</span>{% endif %}</h3>
           <p class="text-sm text-gray-600 mt-1.5 leading-relaxed">{{ term.short_definition }}</p>
           {% if term.long_definition %}

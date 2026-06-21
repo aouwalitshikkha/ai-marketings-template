@@ -2,12 +2,10 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models.functions import Lower
-from django.utils.text import slugify
 
 
 class GlossaryTerm(models.Model):
     term = models.CharField(max_length=255, unique=True)
-    slug = models.SlugField(max_length=255, unique=True, blank=True)
     short_definition = models.CharField(max_length=250)
     long_definition = models.TextField(blank=True)
 
@@ -37,7 +35,6 @@ class GlossaryTerm(models.Model):
     class Meta:
         ordering = ['term']
         indexes = [
-            models.Index(fields=['slug'], name='glossaryterm_slug_idx'),
             models.Index(fields=['status'], name='glossaryterm_status_idx'),
             models.Index(Lower('term'), name='glossaryterm_term_lower_idx'),
         ]
@@ -62,18 +59,10 @@ class GlossaryTerm(models.Model):
 
     def save(self, *args, **kwargs):
         self.full_clean()
-        if not self.slug:
-            base = slugify(self.term)
-            slug = base
-            i = 2
-            while GlossaryTerm.objects.filter(slug=slug).exclude(pk=self.pk).exists():
-                slug = f"{base}-{i}"
-                i += 1
-            self.slug = slug
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return f"/glossary/#{self.slug}"
+        return f"/glossary/#term-{self.pk}"
 
 
 class GlossaryPageConfig(models.Model):

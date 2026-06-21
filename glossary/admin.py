@@ -4,10 +4,9 @@ from .models import GlossaryTerm, GlossaryPageConfig
 
 @admin.register(GlossaryTerm)
 class GlossaryTermAdmin(admin.ModelAdmin):
-    list_display = ['term', 'slug', 'status', 'review_score', 'created_at', 'updated_at']
+    list_display = ['term', 'status', 'review_score', 'created_at', 'updated_at']
     list_filter = ['status', 'created_at']
     search_fields = ['term', 'short_definition', 'long_definition']
-    prepopulated_fields = {'slug': ['term']}
     readonly_fields = ['created_at', 'updated_at', 'version']
     fieldsets = [
         ('Term', {'fields': ['term', 'slug', 'short_definition', 'long_definition']}),
