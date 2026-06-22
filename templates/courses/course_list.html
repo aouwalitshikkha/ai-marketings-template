@@ -1,12 +1,33 @@
 {% extends "base.html" %}
 {% load static %}
 {% load course_extras %}
-{% block title %}Courses — aimrarket{% endblock %}
-{% block meta_description %}Free, hands-on AI marketing courses. Learn ChatGPT, prompt engineering, AI content strategy, SEO, and more.{% endblock %}
-{% block og_title %}Courses — aimrarket{% endblock %}
-{% block og_description %}Free, hands-on AI marketing courses. Learn ChatGPT, prompt engineering, AI content strategy, SEO, and more.{% endblock %}
-{% block twitter_title %}Courses — aimrarket{% endblock %}
-{% block twitter_description %}Free, hands-on AI marketing courses. Learn ChatGPT, prompt engineering, AI content strategy, SEO, and more.{% endblock %}
+{% block seo_head %}
+<title>Courses — AI for Marketings | AI Tools Review & Marketing Insights</title>
+<meta property="og:title" content="Courses — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name="twitter:title" content="Courses — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+<meta name="description" content="Free, hands-on AI marketing courses at AIFORMARKETINGS. Learn ChatGPT, prompt engineering, AI content strategy, SEO, and more.">
+<meta property="og:description" content="Free, hands-on AI marketing courses at AIFORMARKETINGS. Learn ChatGPT, prompt engineering, AI content strategy, SEO, and more.">
+<meta name="twitter:description" content="Free, hands-on AI marketing courses at AIFORMARKETINGS. Learn ChatGPT, prompt engineering, AI content strategy, SEO, and more.">
+<meta itemprop="description" content="Free, hands-on AI marketing courses at AIFORMARKETINGS. Learn ChatGPT, prompt engineering, AI content strategy, SEO, and more.">
+<meta itemprop="name" content="Courses — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta property="og:type" content="website" />
+<meta name="author" content="AIFORMARKETINGS Team">
+<meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+{% with first_course=courses|first %}
+{% if first_course and first_course.image %}
+<meta name="twitter:image" content="https://aiformarketings.com{{ first_course.image.url }}">
+<meta property="og:image" content="https://aiformarketings.com{{ first_course.image.url }}">
+<meta itemprop="image" content="https://aiformarketings.com{{ first_course.image.url }}">
+{% else %}
+<meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+{% endif %}
+{% endwith %}
+{% endblock %}
 
 {% block nav_courses %}text-gray-900 font-semibold{% endblock %}
 

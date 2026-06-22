@@ -1,12 +1,31 @@
 {% extends "base.html" %}
 {% load static %}
 {% load course_extras %}
-{% block title %}{{ chapter.get_meta_title }} — aimrarket{% endblock %}
-{% block meta_description %}{{ chapter.get_meta_description }}{% endblock %}
-{% block og_title %}{{ chapter.get_meta_title }} — aimrarket{% endblock %}
-{% block og_description %}{{ chapter.get_meta_description }}{% endblock %}
-{% block twitter_title %}{{ chapter.get_meta_title }} — aimrarket{% endblock %}
-{% block twitter_description %}{{ chapter.get_meta_description }}{% endblock %}
+{% block seo_head %}
+<title>{{ chapter.get_meta_title }} — AI for Marketings | AI Tools Review & Marketing Insights</title>
+<meta property="og:title" content="{{ chapter.get_meta_title }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name="twitter:title" content="{{ chapter.get_meta_title }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+<meta name="description" content="{{ chapter.get_meta_description }}">
+<meta property="og:description" content="{{ chapter.get_meta_description }}">
+<meta name="twitter:description" content="{{ chapter.get_meta_description }}">
+<meta itemprop="description" content="{{ chapter.get_meta_description }}">
+<meta itemprop="name" content="{{ chapter.get_meta_title }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta property="og:type" content="website" />
+<meta name="author" content="AIFORMARKETINGS Team">
+<meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+{% if course.image %}
+<meta name="twitter:image" content="https://aiformarketings.com{{ course.image.url }}">
+<meta property="og:image" content="https://aiformarketings.com{{ course.image.url }}">
+<meta itemprop="image" content="https://aiformarketings.com{{ course.image.url }}">
+{% else %}
+<meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+{% endif %}
+{% endblock %}
 
 {% block nav_courses %}text-gray-900 font-semibold{% endblock %}
 

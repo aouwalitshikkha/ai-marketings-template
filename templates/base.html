@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{% block title %}Glossary — aimrarket{% endblock %}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/output.css' %}" />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-  <meta name="author" content="aimrarket" />
-  <meta name="description" content="{% block meta_description %}Your guide to AI marketing terminology.{% endblock %}" />
-  <meta name="theme-color" content="#faf8f5" />
-  <link rel="icon" href="{% static 'favicon.svg' %}" type="image/svg+xml" />
-  <meta name="color-scheme" content="light" />
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+  <link rel="dns-prefetch" href="//picsum.photos" />
+  <meta name="google-site-verification" content="q0TPuQxthlIeObrUML8hxldRas7HnAeOJqPSfxJk_3M" />
+  <meta name="trustpilot-one-time-domain-verification-id" content="90ad083c-0382-48f1-abde-f6bec9ce4512"/>
+  <meta name="msvalidate.01" content="839BA032AEC2D09AAF00828FECB7F16B" />
+  <meta name="p:domain_verify" content="facd74d0a09b83ffc7d3a1f2317f01b8"/>
+  <meta name="google-adsense-account" content="ca-pub-4917045915397928"/>
   <meta property="og:locale" content="en_US" />
+  {% block seo_head %}
+  <title>AI for Marketings | AI Tools Review & Marketing Insights</title>
+  <meta property="og:title" content="AI for Marketings | AI Tools Review & Marketing Insights">
+  <meta name="twitter:title" content="AI for Marketings | AI Tools Review & Marketing Insights">
+  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+  <meta name="description" content="Discover the best AI tools, reviews, comparisons, and guides to boost your digital marketing success at AIFORMARKETINGS.">
+  <meta property="og:description" content="Discover the best AI tools, reviews, comparisons, and guides to boost your digital marketing success at AIFORMARKETINGS.">
+  <meta name="twitter:description" content="Discover the best AI tools, reviews, comparisons, and guides to boost your digital marketing success at AIFORMARKETINGS.">
+  <meta itemprop="description" content="Discover the best AI tools, reviews, comparisons, and guides to boost your digital marketing success at AIFORMARKETINGS.">
+  <meta itemprop="name" content="AI for Marketings | AI Tools Review & Marketing Insights">
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="{% block og_title %}Glossary — aimrarket{% endblock %}" />
-  <meta property="og:description" content="{% block og_description %}Your guide to AI marketing terminology. Clear definitions of key terms, tools, and concepts.{% endblock %}" />
-  <meta property="og:site_name" content="aimrarket" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{% block twitter_title %}Glossary — aimrarket{% endblock %}" />
-  <meta name="twitter:description" content="{% block twitter_description %}Your guide to AI marketing terminology. Clear definitions of key terms, tools, and concepts.{% endblock %}" />
+  <meta name="author" content="AIFORMARKETINGS Team">
+  <meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+  <meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+  <meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+  {% endblock %}
   {% block extra_head %}{% endblock %}
 </head>
 <body class="bg-[#faf8f5] text-gray-800 font-sans antialiased">

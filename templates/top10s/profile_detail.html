@@ -1,11 +1,30 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}{{ profile.meta_title|default:profile.title }} — aimrarket{% endblock %}
-{% block meta_description %}{{ profile.meta_description|default:profile.intro|striptags|truncatewords:30 }}{% endblock %}
-{% block og_title %}{{ profile.meta_title|default:profile.title }} — aimrarket{% endblock %}
-{% block og_description %}{{ profile.meta_description|default:profile.intro|striptags|truncatewords:30 }}{% endblock %}
-{% block twitter_title %}{{ profile.meta_title|default:profile.title }} — aimrarket{% endblock %}
-{% block twitter_description %}{{ profile.meta_description|default:profile.intro|striptags|truncatewords:30 }}{% endblock %}
+{% block seo_head %}
+<title>{{ profile.meta_title|default:profile.title }} — AI for Marketings | AI Tools Review & Marketing Insights</title>
+<meta property="og:title" content="{{ profile.meta_title|default:profile.title }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name="twitter:title" content="{{ profile.meta_title|default:profile.title }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+<meta name="description" content="{{ profile.meta_description|default:profile.intro|striptags|truncatewords:30 }}">
+<meta property="og:description" content="{{ profile.meta_description|default:profile.intro|striptags|truncatewords:30 }}">
+<meta name="twitter:description" content="{{ profile.meta_description|default:profile.intro|striptags|truncatewords:30 }}">
+<meta itemprop="description" content="{{ profile.meta_description|default:profile.intro|striptags|truncatewords:30 }}">
+<meta itemprop="name" content="{{ profile.meta_title|default:profile.title }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta property="og:type" content="website" />
+<meta name="author" content="AIFORMARKETINGS Team">
+<meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+{% if profile.image %}
+<meta name="twitter:image" content="https://aiformarketings.com{{ profile.image.url }}">
+<meta property="og:image" content="https://aiformarketings.com{{ profile.image.url }}">
+<meta itemprop="image" content="https://aiformarketings.com{{ profile.image.url }}">
+{% else %}
+<meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+{% endif %}
+{% endblock %}
 
 {% block nav_top10 %}text-gray-900 font-semibold{% endblock %}
 

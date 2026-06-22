@@ -1,11 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Contact — aimrarket{% endblock %}
-{% block meta_description %}Get in touch with aimrarket. Have a question, suggestion, or want to contribute? We'd love to hear from you.{% endblock %}
-{% block og_title %}Contact — aimrarket{% endblock %}
-{% block og_description %}Get in touch with aimrarket. Have a question, suggestion, or want to contribute? We'd love to hear from you.{% endblock %}
-{% block twitter_title %}Contact — aimrarket{% endblock %}
-{% block twitter_description %}Get in touch with aimrarket. Have a question, suggestion, or want to contribute? We'd love to hear from you.{% endblock %}
+{% block seo_head %}
+<title>Contact — AI for Marketings | AI Tools Review & Marketing Insights</title>
+<meta property="og:title" content="Contact — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name="twitter:title" content="Contact — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+<meta name="description" content="Get in touch with AIFORMARKETINGS. Have a question, suggestion, or want to contribute? We'd love to hear from you.">
+<meta property="og:description" content="Get in touch with AIFORMARKETINGS. Have a question, suggestion, or want to contribute? We'd love to hear from you.">
+<meta name="twitter:description" content="Get in touch with AIFORMARKETINGS. Have a question, suggestion, or want to contribute? We'd love to hear from you.">
+<meta itemprop="description" content="Get in touch with AIFORMARKETINGS. Have a question, suggestion, or want to contribute? We'd love to hear from you.">
+<meta itemprop="name" content="Contact — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta property="og:type" content="website" />
+<meta name="author" content="AIFORMARKETINGS Team">
+<meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+{% endblock %}
 
 {% block nav_contact %}text-gray-900 font-semibold{% endblock %}
 

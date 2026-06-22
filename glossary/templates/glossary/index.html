@@ -2,12 +2,25 @@
 {% load static %}
 {% load glossary_extras %}
 
-{% block title %}{{ page_title|default:"AI Marketing Glossary" }} — aimrarket{% endblock %}
-{% block meta_description %}{{ page_description|default:"Your guide to AI marketing terminology. Clear definitions of key terms, tools, and concepts." }}{% endblock %}
-{% block og_title %}{{ page_title|default:"AI Marketing Glossary" }} — aimrarket{% endblock %}
-{% block og_description %}{{ page_description|default:"Your guide to AI marketing terminology. Clear definitions of key terms, tools, and concepts." }}{% endblock %}
-{% block twitter_title %}{{ page_title|default:"AI Marketing Glossary" }} — aimrarket{% endblock %}
-{% block twitter_description %}{{ page_description|default:"Your guide to AI marketing terminology. Clear definitions of key terms, tools, and concepts." }}{% endblock %}
+{% block seo_head %}
+<title>{{ page_title|default:"AI Marketing Glossary" }} — AI for Marketings | AI Tools Review & Marketing Insights</title>
+<meta property="og:title" content="{{ page_title|default:"AI Marketing Glossary" }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name="twitter:title" content="{{ page_title|default:"AI Marketing Glossary" }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+<meta name="description" content="{{ page_description|default:'Your guide to AI marketing terminology. Clear definitions of key terms, tools, and concepts.' }}">
+<meta property="og:description" content="{{ page_description|default:'Your guide to AI marketing terminology. Clear definitions of key terms, tools, and concepts.' }}">
+<meta name="twitter:description" content="{{ page_description|default:'Your guide to AI marketing terminology. Clear definitions of key terms, tools, and concepts.' }}">
+<meta itemprop="description" content="{{ page_description|default:'Your guide to AI marketing terminology. Clear definitions of key terms, tools, and concepts.' }}">
+<meta itemprop="name" content="{{ page_title|default:"AI Marketing Glossary" }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta property="og:type" content="website" />
+<meta name="author" content="AIFORMARKETINGS Team">
+<meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+{% endblock %}
 
 {% block nav_glossary %}text-gray-900 font-semibold{% endblock %}
 

@@ -1,11 +1,32 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Top 10 Listicles — aimrarket{% endblock %}
-{% block meta_description %}Curated and ranked Top 10 lists covering the best tools, platforms, and resources across marketing, design, and business.{% endblock %}
-{% block og_title %}Top 10 Listicles — aimrarket{% endblock %}
-{% block og_description %}Curated and ranked Top 10 lists covering the best tools, platforms, and resources across marketing, design, and business.{% endblock %}
-{% block twitter_title %}Top 10 Listicles — aimrarket{% endblock %}
-{% block twitter_description %}Curated and ranked Top 10 lists covering the best tools, platforms, and resources across marketing, design, and business.{% endblock %}
+{% block seo_head %}
+<title>Top 10 Listicles — AI for Marketings | AI Tools Review & Marketing Insights</title>
+<meta property="og:title" content="Top 10 Listicles — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name="twitter:title" content="Top 10 Listicles — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+<meta name="description" content="Curated and ranked Top 10 lists covering the best AI tools, platforms, and resources across marketing, design, and business at AIFORMARKETINGS.">
+<meta property="og:description" content="Curated and ranked Top 10 lists covering the best AI tools, platforms, and resources across marketing, design, and business at AIFORMARKETINGS.">
+<meta name="twitter:description" content="Curated and ranked Top 10 lists covering the best AI tools, platforms, and resources across marketing, design, and business at AIFORMARKETINGS.">
+<meta itemprop="description" content="Curated and ranked Top 10 lists covering the best AI tools, platforms, and resources across marketing, design, and business at AIFORMARKETINGS.">
+<meta itemprop="name" content="Top 10 Listicles — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta property="og:type" content="website" />
+<meta name="author" content="AIFORMARKETINGS Team">
+<meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+{% with first_prof=profiles|first %}
+{% if first_prof and first_prof.image %}
+<meta name="twitter:image" content="https://aiformarketings.com{{ first_prof.image.url }}">
+<meta property="og:image" content="https://aiformarketings.com{{ first_prof.image.url }}">
+<meta itemprop="image" content="https://aiformarketings.com{{ first_prof.image.url }}">
+{% else %}
+<meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+{% endif %}
+{% endwith %}
+{% endblock %}
 
 {% block nav_top10 %}text-gray-900 font-semibold{% endblock %}
 

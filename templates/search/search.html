@@ -1,11 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}{% if q %}Search results for "{{ q }}" — aimrarket{% else %}Search — aimrarket{% endif %}{% endblock %}
-{% block meta_description %}Search articles, Top 10 listicles, and courses on aimrarket.{% endblock %}
-{% block og_title %}Search — aimrarket{% endblock %}
-{% block og_description %}Search articles, Top 10 listicles, and courses on aimrarket.{% endblock %}
-{% block twitter_title %}Search — aimrarket{% endblock %}
-{% block twitter_description %}Search articles, Top 10 listicles, and courses on aimrarket.{% endblock %}
+{% block seo_head %}
+<title>{% if q %}Search results for "{{ q }}" — AI for Marketings{% else %}Search — AI for Marketings | AI Tools Review & Marketing Insights{% endif %}</title>
+<meta property="og:title" content="{% if q %}Search results for "{{ q }}" — AI for Marketings{% else %}Search — AI for Marketings | AI Tools Review & Marketing Insights{% endif %}">
+<meta name="twitter:title" content="{% if q %}Search results for "{{ q }}" — AI for Marketings{% else %}Search — AI for Marketings | AI Tools Review & Marketing Insights{% endif %}">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+<meta name="description" content="Search articles, Top 10 listicles, and courses on AIFORMARKETINGS.">
+<meta property="og:description" content="Search articles, Top 10 listicles, and courses on AIFORMARKETINGS.">
+<meta name="twitter:description" content="Search articles, Top 10 listicles, and courses on AIFORMARKETINGS.">
+<meta itemprop="description" content="Search articles, Top 10 listicles, and courses on AIFORMARKETINGS.">
+<meta itemprop="name" content="{% if q %}Search results for "{{ q }}" — AI for Marketings{% else %}Search — AI for Marketings | AI Tools Review & Marketing Insights{% endif %}">
+<meta property="og:type" content="website" />
+<meta name="author" content="AIFORMARKETINGS Team">
+<meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+{% endblock %}
 
 {% block content %}
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">

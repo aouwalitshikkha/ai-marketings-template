@@ -1,11 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}About — aimrarket{% endblock %}
-{% block meta_description %}Your hub for AI marketing insights, curated rankings, and free courses. Learn about our mission, values, and team.{% endblock %}
-{% block og_title %}About — aimrarket{% endblock %}
-{% block og_description %}Your hub for AI marketing insights, curated rankings, and free courses. Learn about our mission, values, and team.{% endblock %}
-{% block twitter_title %}About — aimrarket{% endblock %}
-{% block twitter_description %}Your hub for AI marketing insights, curated rankings, and free courses. Learn about our mission, values, and team.{% endblock %}
+{% block seo_head %}
+<title>About — AI for Marketings | AI Tools Review & Marketing Insights</title>
+<meta property="og:title" content="About — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name="twitter:title" content="About — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+<meta name="description" content="Learn about AIFORMARKETINGS — your hub for AI marketing insights, curated rankings, and free courses.">
+<meta property="og:description" content="Learn about AIFORMARKETINGS — your hub for AI marketing insights, curated rankings, and free courses.">
+<meta name="twitter:description" content="Learn about AIFORMARKETINGS — your hub for AI marketing insights, curated rankings, and free courses.">
+<meta itemprop="description" content="Learn about AIFORMARKETINGS — your hub for AI marketing insights, curated rankings, and free courses.">
+<meta itemprop="name" content="About — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta property="og:type" content="website" />
+<meta name="author" content="AIFORMARKETINGS Team">
+<meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+{% endblock %}
 
 {% block nav_about %}text-gray-900 font-semibold{% endblock %}
 

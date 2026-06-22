@@ -1,9 +1,32 @@
 {% extends "base.html" %}
 {% load blog_extras %}
-{% block title %}{{ category.name }} — aimrarket{% endblock %}
-{% block meta_description %}{{ category.description|truncatewords:25 }}{% endblock %}
-{% block og_title %}{{ category.name }} — aimrarket{% endblock %}
-{% block twitter_title %}{{ category.name }} — aimrarket{% endblock %}
+{% block seo_head %}
+<title>{{ category.name }} — AI for Marketings | AI Tools Review & Marketing Insights</title>
+<meta property="og:title" content="{{ category.name }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name="twitter:title" content="{{ category.name }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+<meta name="description" content="{{ category.description|truncatewords:25 }}">
+<meta property="og:description" content="{{ category.description|truncatewords:25 }}">
+<meta name="twitter:description" content="{{ category.description|truncatewords:25 }}">
+<meta itemprop="description" content="{{ category.description|truncatewords:25 }}">
+<meta itemprop="name" content="{{ category.name }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta property="og:type" content="website" />
+<meta name="author" content="AIFORMARKETINGS Team">
+<meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+{% with first_post=posts|first %}
+{% if first_post and first_post.featured_image %}
+<meta name="twitter:image" content="https://aiformarketings.com{{ first_post.featured_image.url }}">
+<meta property="og:image" content="https://aiformarketings.com{{ first_post.featured_image.url }}">
+<meta itemprop="image" content="https://aiformarketings.com{{ first_post.featured_image.url }}">
+{% else %}
+<meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+{% endif %}
+{% endwith %}
+{% endblock %}
 
 {% block nav_blog %}text-gray-900 font-semibold{% endblock %}
 
