@@ -16,11 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.views.generic.base import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
 from glossary.views import GlossaryMarkdownView
 from .views import home_view
 
 urlpatterns = [
+    path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
     path('', home_view, name='home'),
     path('admin/', admin.site.urls),
     re_path(r'^glossary\.md$', GlossaryMarkdownView.as_view(), name='glossary_markdown'),

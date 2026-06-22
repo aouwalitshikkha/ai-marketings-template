@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aimrarket.com/sitemap.xml
