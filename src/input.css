@@ -20,6 +20,11 @@
   details > summary {
     list-style: none;
   }
+  @media (min-width: 640px) {
+    footer details:not([open]) ul {
+      display: block;
+    }
+  }
 }
 
 @layer components {
