@@ -19,3 +19,11 @@ def home_view(request):
         "profile_count": Profiles.objects.count(),
     }
     return render(request, "home.html", context)
+
+
+def handler404_view(request, exception):
+    return render(request, "404.html", status=404)
+
+
+def handler500_view(request):
+    return render(request, "500.html", status=500)

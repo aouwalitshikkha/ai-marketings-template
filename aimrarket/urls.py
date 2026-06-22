@@ -20,11 +20,14 @@ from django.views.generic.base import TemplateView
 from django.contrib.sitemaps.views import index as sitemap_index, sitemap as sitemap_section
 from rest_framework.authtoken.views import obtain_auth_token
 from glossary.views import GlossaryMarkdownView
-from .views import home_view
+from .views import home_view, handler404_view, handler500_view
 from .sitemaps import (
     StaticViewSitemap, BlogPostSitemap, CourseSitemap,
     ChapterSitemap, ProfilesSitemap, GlossaryTermSitemap,
 )
+
+handler404 = handler404_view
+handler500 = handler500_view
 
 sitemaps = {
     "static": StaticViewSitemap,
