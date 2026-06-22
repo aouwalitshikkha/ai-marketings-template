@@ -17,9 +17,9 @@
 
   <nav class="text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
     <ol class="flex flex-wrap items-center gap-2">
-      <li><a href="/" class="hover:text-red-600 transition">Home</a></li>
+      <li><a href="{% url 'home' %}" class="hover:text-red-600 transition">Home</a></li>
       <li><span class="mx-1 text-gray-300">›</span></li>
-      <li><a href="/courses/" class="hover:text-indigo-600 transition">Courses</a></li>
+      <li><a href="{% url 'course_list' %}" class="hover:text-indigo-600 transition">Courses</a></li>
       <li><span class="mx-1 text-gray-300">›</span></li>
       <li><a href="{{ course.get_absolute_url }}" class="hover:text-indigo-600 transition">{{ course.title }}</a></li>
       <li><span class="mx-1 text-gray-300">›</span></li>
@@ -43,7 +43,7 @@
               {% for ch in chapters %}
               <li>
                 <a href="{{ ch.get_absolute_url }}" class="flex items-start gap-2 py-1.5 px-2 rounded-md text-sm transition {% if ch.slug == chapter.slug %}bg-indigo-50 text-indigo-700 font-semibold{% else %}text-gray-600 hover:bg-gray-50 hover:text-indigo-600{% endif %}">
-                  <span class="text-xs text-gray-400 shrink-0 mt-0.5">{{ ch.number }}</span>
+                  <span class="text-xs text-gray-500 shrink-0 mt-0.5">{{ ch.number }}</span>
                   <span class="line-clamp-2">{{ ch.title }}</span>
                 </a>
               </li>

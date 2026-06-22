@@ -14,14 +14,14 @@
 
   <nav class="text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
     <ol class="flex flex-wrap items-center gap-2">
-      <li><a href="/" class="hover:text-red-600 transition">Home</a></li>
+      <li><a href="{% url 'home' %}" class="hover:text-red-600 transition">Home</a></li>
       <li><span class="mx-1 text-gray-300">›</span></li>
       <li class="text-red-700 font-semibold" aria-current="page">About</li>
     </ol>
   </nav>
 
   <section class="max-w-3xl mx-auto mb-16">
-    <p class="text-red-600 text-sm font-semibold uppercase tracking-widest mb-2">About</p>
+    <p class="text-red-700 text-sm font-semibold uppercase tracking-widest mb-2">About</p>
     <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight mb-4">About aimrarket</h1>
     <p class="text-lg text-gray-600 leading-relaxed mb-6">Your hub for AI marketing insights, curated Top 10 rankings, and free hands-on courses. We help marketers leverage AI tools and strategies — without the hype.</p>
     <p class="text-gray-600 leading-relaxed">aimrarket was created to fill a gap: most marketing content is either too beginner-friendly (skimming the surface) or too technical (requiring engineering skills). We aim for the middle — practical, actionable content that respects your time and experience. Every article, listicle, and course is written by practitioners who actually use these tools daily.</p>
@@ -34,19 +34,19 @@
         <div class="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center mx-auto mb-4"><svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg></div>
         <h3 class="text-lg font-bold text-gray-900 mb-2">Blog</h3>
         <p class="text-sm text-gray-500 leading-relaxed">In-depth articles on AI marketing tools, strategies, and industry trends written by practitioners.</p>
-        <a href="/blog/" class="mt-4 inline-flex text-sm font-semibold text-red-600 hover:text-red-700 transition">Read the Blog &rarr;</a>
+        <a href="{% url 'blog_home' %}" class="mt-4 inline-flex text-sm font-semibold text-red-700 hover:text-red-800 transition">Read the Blog &rarr;</a>
       </div>
       <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-sm text-center">
         <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mx-auto mb-4"><svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
         <h3 class="text-lg font-bold text-gray-900 mb-2">Top 10 Listicles</h3>
         <p class="text-sm text-gray-500 leading-relaxed">Carefully researched and ranked lists of the best tools across SEO, design, analytics, and more.</p>
-        <a href="/top10/" class="mt-4 inline-flex text-sm font-semibold text-amber-600 hover:text-amber-700 transition">Browse Top 10 &rarr;</a>
+        <a href="{% url 'profile_list' %}" class="mt-4 inline-flex text-sm font-semibold text-amber-700 hover:text-amber-800 transition">Browse Top 10 &rarr;</a>
       </div>
       <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-sm text-center">
         <div class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center mx-auto mb-4"><svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div>
         <h3 class="text-lg font-bold text-gray-900 mb-2">Glossary</h3>
         <p class="text-sm text-gray-500 leading-relaxed">A clear reference of key AI marketing terms, tools, and concepts. Built for quick lookups.</p>
-        <a href="/glossary/" class="mt-4 inline-flex text-sm font-semibold text-indigo-600 hover:text-indigo-700 transition">Open Glossary &rarr;</a>
+        <a href="{% url 'glossary_index' %}" class="mt-4 inline-flex text-sm font-semibold text-indigo-600 hover:text-indigo-700 transition">Open Glossary &rarr;</a>
       </div>
     </div>
   </section>

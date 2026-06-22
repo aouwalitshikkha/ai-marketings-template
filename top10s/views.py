@@ -14,6 +14,9 @@ class ProfileDetailView(DetailView):
     template_name = "top10s/profile_detail.html"
     context_object_name = "profile"
 
+    def get_queryset(self):
+        return Profiles.objects.prefetch_related("tools", "placeholders")
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["recent_profiles"] = Profiles.objects.exclude(pk=self.object.pk)[:3]

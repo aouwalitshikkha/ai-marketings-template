@@ -13,7 +13,8 @@ class Course(models.Model):
     level = models.CharField(
         max_length=20,
         choices=[('Beginner', 'Beginner'), ('Intermediate', 'Intermediate'), ('Advance', 'Advance')],
-        default='Beginner'
+        default='Beginner',
+        db_index=True
     )
     meta_title = models.CharField(max_length=255, blank=True, help_text="Custom meta title for SEO.")
     meta_description = models.TextField(blank=True, help_text="Custom meta description for SEO.")
@@ -76,7 +77,7 @@ class Chapter(models.Model):
     content = models.TextField(blank=True)
     meta_title = models.CharField(max_length=255, blank=True, help_text="Custom meta title for SEO.")
     meta_description = models.TextField(blank=True, help_text="Custom meta description for SEO.")
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft', db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

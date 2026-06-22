@@ -12,7 +12,7 @@
 
   <nav class="text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
     <ol class="flex flex-wrap items-center gap-2">
-      <li><a href="/" class="hover:text-red-600 transition">Home</a></li>
+      <li><a href="{% url 'home' %}" class="hover:text-red-600 transition">Home</a></li>
       <li><span class="mx-1 text-gray-300">›</span></li>
       <li class="text-gray-600" aria-current="page">Search{% if q %}: {{ q }}{% endif %}</li>
     </ol>
@@ -26,12 +26,12 @@
       {% if q %}{{ results|length }} result{{ results|length|pluralize }} found across blog posts and Top 10 listicles.{% else %}Find articles, Top 10 listicles, and resources across the site.{% endif %}
     </p>
 
-    <form action="/search/" method="GET" role="search" class="max-w-xl">
+    <form action="{% url 'search' %}" method="GET" role="search" class="max-w-xl">
       <div class="relative">
         <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
         <input type="search" name="q" value="{{ q }}" placeholder="Search articles, listicles, topics..." class="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition" autocomplete="off" aria-label="Search query" />
         {% if q %}
-        <a href="/search/" class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 inline-flex items-center justify-center rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition" aria-label="Clear search" title="Clear">
+        <a href="{% url 'search' %}" class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 inline-flex items-center justify-center rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition" aria-label="Clear search" title="Clear">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
         </a>
         {% endif %}
@@ -43,7 +43,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     {% for item in results %}
     <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-      <a href="{{ item.url }}" class="block overflow-hidden">
+      <a href="{{ item.url }}" class="block overflow-hidden" aria-label="{{ item.title }}">
         <div class="aspect-[16/10] overflow-hidden bg-gray-100">
           {% if item.image %}
           <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ item.image }}" alt="{{ item.title }}" loading="lazy" />
@@ -55,10 +55,10 @@
       <div class="p-5 sm:p-6">
         {% if item.type == "Top 10" %}
         <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-700 mb-2">{{ item.category }}</span>
-        <h3 class="text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-amber-600 transition"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+        <h2 class="text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-amber-600 transition"><a href="{{ item.url }}">{{ item.title }}</a></h2>
         {% else %}
         <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-700 mb-2">{{ item.category }}</span>
-        <h3 class="text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-red-600 transition"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+        <h2 class="text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-red-600 transition"><a href="{{ item.url }}">{{ item.title }}</a></h2>
         {% endif %}
         <p class="text-gray-500 text-sm leading-relaxed">{{ item.desc }}</p>
       </div>
@@ -71,7 +71,7 @@
     <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
     <h2 class="text-2xl font-bold text-gray-900 mb-2">No results found</h2>
     <p class="text-gray-500 mb-6">No results for "{{ q }}". Try adjusting your search terms.</p>
-    <a href="/blog/" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition">Browse Blog &rarr;</a>
+    <a href="{% url 'blog_home' %}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition">Browse Blog &rarr;</a>
   </div>
 
   {% else %}
@@ -80,10 +80,10 @@
     <h2 class="text-2xl font-bold text-gray-900 mb-2">Start searching</h2>
     <p class="text-gray-500 mb-6">Type a query above to search across blog posts and Top 10 listicles.</p>
     <div class="flex flex-wrap justify-center gap-2">
-      <a href="/search/?q=AI" class="px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:border-red-300 hover:text-red-600 transition">AI</a>
-      <a href="/search/?q=marketing" class="px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:border-red-300 hover:text-red-600 transition">Marketing</a>
-      <a href="/search/?q=SEO" class="px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:border-red-300 hover:text-red-600 transition">SEO</a>
-      <a href="/search/?q=tools" class="px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:border-red-300 hover:text-red-600 transition">Tools</a>
+      <a href="{% url 'search' %}?q=AI" class="px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:border-red-300 hover:text-red-600 transition">AI</a>
+      <a href="{% url 'search' %}?q=marketing" class="px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:border-red-300 hover:text-red-600 transition">Marketing</a>
+      <a href="{% url 'search' %}?q=SEO" class="px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:border-red-300 hover:text-red-600 transition">SEO</a>
+      <a href="{% url 'search' %}?q=tools" class="px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:border-red-300 hover:text-red-600 transition">Tools</a>
     </div>
   </div>
   {% endif %}

@@ -38,7 +38,7 @@ class PostDetailView(DetailView):
             context['related_posts'] = Post.objects.filter(
                 status=Post.Status.PUBLISHED,
                 category=post.category
-            ).exclude(pk=post.pk)[:3]
+            ).select_related('category').exclude(pk=post.pk)[:3]
         else:
             context['related_posts'] = []
         return context

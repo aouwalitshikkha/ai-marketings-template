@@ -9,7 +9,7 @@ class CourseListView(ListView):
     context_object_name = "courses"
 
     def get_queryset(self):
-        qs = Course.objects.all()
+        qs = Course.objects.prefetch_related("chapters")
         level = self.request.GET.get("level")
         if level and level in ("Beginner", "Intermediate", "Advance"):
             qs = qs.filter(level=level)
@@ -25,6 +25,9 @@ class CourseDetailView(DetailView):
     model = Course
     template_name = "courses/course_detail.html"
     context_object_name = "course"
+
+    def get_queryset(self):
+        return Course.objects.prefetch_related("chapters")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

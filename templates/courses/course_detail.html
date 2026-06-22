@@ -15,9 +15,9 @@
 
   <nav class="text-sm text-gray-500 mb-8 max-w-4xl mx-auto" aria-label="Breadcrumb">
     <ol class="flex flex-wrap items-center gap-2">
-      <li><a href="/" class="hover:text-red-600 transition">Home</a></li>
+      <li><a href="{% url 'home' %}" class="hover:text-red-600 transition">Home</a></li>
       <li><span class="mx-1 text-gray-300">›</span></li>
-      <li><a href="/courses/" class="hover:text-indigo-600 transition">Courses</a></li>
+      <li><a href="{% url 'course_list' %}" class="hover:text-indigo-600 transition">Courses</a></li>
       <li><span class="mx-1 text-gray-300">›</span></li>
       <li class="text-gray-600 truncate max-w-[12rem] sm:max-w-xs" aria-current="page">{{ course.title }}</li>
     </ol>
@@ -91,7 +91,7 @@
             <div class="flex items-center justify-between gap-3">
               <div>
                 <h3 class="font-bold text-gray-900"><span class="text-indigo-600">Chapter {{ chapter.number }}:</span> {{ chapter.title }}</h3>
-                {% if chapter.summary %}<p class="text-xs text-gray-500 mt-1 line-clamp-1">{{ chapter.summary }}</p>{% endif %}
+                {% if chapter.summary %}<p class="text-xs text-gray-600 mt-1 line-clamp-1">{{ chapter.summary }}</p>{% endif %}
               </div>
               <svg class="w-5 h-5 text-indigo-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
             </div>
@@ -136,7 +136,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {% for related in related_courses %}
         <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-          <a href="{{ related.get_absolute_url }}" class="block overflow-hidden">
+          <a href="{{ related.get_absolute_url }}" class="block overflow-hidden" aria-label="{{ related.title }}">
             <div class="aspect-[16/9] overflow-hidden bg-gray-100">
               {% if related.image %}
               <img width="800" height="450" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ related.image.url }}" alt="" loading="lazy" />
