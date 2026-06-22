@@ -69,7 +69,7 @@
 
     <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-gray-500 mb-10 pb-8 border-b border-gray-200">
       <span class="flex items-center gap-2">
-        <img width="80" height="80" class="w-8 h-8 rounded-full object-cover" src="https://picsum.photos/seed/abdul-aouwal/80/80" alt="" loading="lazy" />
+        <img width="80" height="80" class="w-8 h-8 rounded-full object-cover" src="{% static 'images/placeholder.svg' %}" alt="" loading="lazy" />
         <span class="font-semibold text-gray-900">Abdul Aouwal</span>
       </span>
       <span class="hidden sm:inline text-gray-300">|</span>
@@ -155,7 +155,7 @@
         {% endif %}
 
         <div class="mt-12 p-6 sm:p-8 bg-white rounded-xl border border-gray-100 shadow-sm flex flex-col sm:flex-row items-start gap-5">
-          <img width="200" height="200" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover shrink-0" src="https://picsum.photos/seed/abdul-aouwal/200/200" alt="Abdul Aouwal" loading="lazy" />
+          <img width="200" height="200" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover shrink-0" src="{% static 'images/placeholder.svg' %}" alt="Abdul Aouwal" loading="lazy" />
           <div>
             <p class="text-xs text-red-600 font-semibold uppercase tracking-widest mb-1">Written by</p>
             <h3 class="text-lg font-bold text-gray-900 mb-1">Abdul Aouwal</h3>
@@ -176,7 +176,7 @@
               {% if related.featured_image %}
               <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ related.featured_image.url }}" alt="" loading="lazy" />
               {% else %}
-              <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/{{ related.slug }}/800/500" alt="" loading="lazy" />
+              <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{% static 'images/placeholder.svg' %}" alt="" loading="lazy" />
               {% endif %}
             </div>
           </a>

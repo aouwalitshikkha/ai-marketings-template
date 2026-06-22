@@ -69,7 +69,7 @@
           {% if post.featured_image %}
           <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ post.featured_image.url }}" alt="" loading="lazy" />
           {% else %}
-          <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/{{ post.slug }}/800/500" alt="" loading="lazy" />
+          <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{% static 'images/placeholder.svg' %}" alt="" loading="lazy" />
           {% endif %}
         </div>
       </a>

@@ -61,7 +61,7 @@
           {% if featured.featured_image %}
           <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ featured.featured_image.url }}" alt="" loading="lazy" />
           {% else %}
-          <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/{{ featured.slug }}/800/500" alt="" loading="lazy" />
+          <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{% static 'images/placeholder.svg' %}" alt="" loading="lazy" />
           {% endif %}
         </a>
         <div class="p-6 sm:p-10 flex flex-col justify-center">
@@ -97,7 +97,7 @@
               {% if post.featured_image %}
               <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ post.featured_image.url }}" alt="" loading="lazy" />
               {% else %}
-              <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/{{ post.slug }}/800/500" alt="" loading="lazy" />
+              <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{% static 'images/placeholder.svg' %}" alt="" loading="lazy" />
               {% endif %}
             </div>
           </a>
@@ -167,7 +167,7 @@
     <aside class="lg:w-80 shrink-0 mt-12 lg:mt-0">
 
       <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 text-center mb-8">
-        <img width="200" height="200" class="w-20 h-20 rounded-full object-cover mx-auto mb-4" src="https://picsum.photos/seed/abdul-aouwal/200/200" alt="Abdul Aouwal" loading="lazy" />
+        <img width="200" height="200" class="w-20 h-20 rounded-full object-cover mx-auto mb-4" src="{% static 'images/placeholder.svg' %}" alt="Abdul Aouwal" loading="lazy" />
         <h3 class="font-bold text-gray-900">Abdul Aouwal</h3>
         <p class="text-xs text-red-600 font-semibold mb-2">AI Marketing Specialist</p>
         <p class="text-sm text-gray-500 leading-relaxed mb-4">Sharing insights on AI marketing, SEO, and web development. Helping marketers leverage AI tools effectively.</p>
@@ -201,7 +201,7 @@
             {% if post.featured_image %}
             <img width="150" height="150" class="w-16 h-16 rounded-lg object-cover shrink-0" src="{{ post.featured_image.url }}" alt="" loading="lazy" />
             {% else %}
-            <img width="150" height="150" class="w-16 h-16 rounded-lg object-cover shrink-0" src="https://picsum.photos/seed/{{ post.slug }}/150/150" alt="" loading="lazy" />
+            <img width="150" height="150" class="w-16 h-16 rounded-lg object-cover shrink-0" src="{% static 'images/placeholder.svg' %}" alt="" loading="lazy" />
             {% endif %}
             <div class="min-w-0 flex-1"><h4 class="text-sm font-semibold text-gray-800 group-hover:text-red-600 transition line-clamp-2">{{ post.title }}</h4><span class="text-xs text-gray-500">{{ post.publish_date|date:"M d, Y" }}</span></div>
           </a></li>

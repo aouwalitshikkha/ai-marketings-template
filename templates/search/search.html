@@ -61,7 +61,7 @@
           {% if item.image %}
           <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ item.image }}" alt="{{ item.title }}" loading="lazy" />
           {% else %}
-          <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://picsum.photos/seed/{{ item.slug }}/800/500" alt="{{ item.title }}" loading="lazy" />
+          <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{% static 'images/placeholder.svg' %}" alt="{{ item.title }}" loading="lazy" />
           {% endif %}
         </div>
       </a>
