@@ -1,7 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Page Not Found — aimrarket{% endblock %}
-{% block meta_description %}The page you're looking for doesn't exist. Return to aimrarket home.{% endblock %}
+{% block seo_head %}
+<title>Page Not Found — AI for Marketings | AI Tools Review & Marketing Insights</title>
+<meta property="og:title" content="Page Not Found — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name="twitter:title" content="Page Not Found — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name='robots' content="noindex, nofollow">
+<meta name="description" content="The page you're looking for doesn't exist. Return to AI for Marketings home.">
+<meta property="og:description" content="The page you're looking for doesn't exist. Return to AI for Marketings home.">
+<meta name="twitter:description" content="The page you're looking for doesn't exist. Return to AI for Marketings home.">
+<meta itemprop="description" content="The page you're looking for doesn't exist. Return to AI for Marketings home.">
+<meta itemprop="name" content="Page Not Found — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta property="og:type" content="website" />
+<meta name="author" content="AIFORMARKETINGS Team">
+<meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+{% endblock %}
 {% block content %}
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 text-center">
   <span class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-red-100 text-red-600 mb-8">
