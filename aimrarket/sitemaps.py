@@ -17,6 +17,21 @@ class StaticViewSitemap(Sitemap):
     def location(self, item):
         return reverse(item)
 
+    def lastmod(self, item):
+        if item == "blog_home":
+            latest = Post.objects.filter(status=Post.Status.PUBLISHED).order_by("-updated_at").first()
+            return latest.updated_at if latest else None
+        if item == "profile_list":
+            latest = Profiles.objects.order_by("-updated_at").first()
+            return latest.updated_at if latest else None
+        if item == "course_list":
+            latest = Course.objects.order_by("-updated_at").first()
+            return latest.updated_at if latest else None
+        if item == "glossary_index":
+            latest = GlossaryTerm.objects.filter(status=GlossaryTerm.Status.PUBLISHED).order_by("-updated_at").first()
+            return latest.updated_at if latest else None
+        return None
+
 
 class BlogPostSitemap(Sitemap):
     changefreq = "weekly"
