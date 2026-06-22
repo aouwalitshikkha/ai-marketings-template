@@ -4,16 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'css/output.css' %}" />
-  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
-  <link rel="dns-prefetch" href="//picsum.photos" />
-  <meta name="google-site-verification" content="q0TPuQxthlIeObrUML8hxldRas7HnAeOJqPSfxJk_3M" />
-  <meta name="trustpilot-one-time-domain-verification-id" content="90ad083c-0382-48f1-abde-f6bec9ce4512"/>
-  <meta name="msvalidate.01" content="839BA032AEC2D09AAF00828FECB7F16B" />
-  <meta name="p:domain_verify" content="facd74d0a09b83ffc7d3a1f2317f01b8"/>
-  <meta name="google-adsense-account" content="ca-pub-4917045915397928"/>
-  <meta property="og:locale" content="en_US" />
+  <link rel="canonical" href="{% block canonical %}{{ request.scheme }}://{{ request.get_host }}{{ request.path }}{% endblock %}" />
   {% block seo_head %}
   <title>AI for Marketings | AI Tools Review & Marketing Insights</title>
   <meta property="og:title" content="AI for Marketings | AI Tools Review & Marketing Insights">
@@ -33,6 +24,16 @@
   <meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
   <meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
   {% endblock %}
+  <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+  <link rel="dns-prefetch" href="//picsum.photos" />
+  <meta name="google-site-verification" content="q0TPuQxthlIeObrUML8hxldRas7HnAeOJqPSfxJk_3M" />
+  <meta name="trustpilot-one-time-domain-verification-id" content="90ad083c-0382-48f1-abde-f6bec9ce4512"/>
+  <meta name="msvalidate.01" content="839BA032AEC2D09AAF00828FECB7F16B" />
+  <meta name="p:domain_verify" content="facd74d0a09b83ffc7d3a1f2317f01b8"/>
+  <meta name="google-adsense-account" content="ca-pub-4917045915397928"/>
+  <meta property="og:locale" content="en_US" />
   {% block extra_head %}{% endblock %}
 </head>
 <body class="bg-[#faf8f5] text-gray-800 font-sans antialiased">
