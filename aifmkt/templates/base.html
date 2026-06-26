@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block seo_head %}
+  <title>AI for Marketings | AI Tools Review & Marketing Insights</title>
+  <meta property="og:title" content="AI for Marketings | AI Tools Review & Marketing Insights">
+  <meta name="twitter:title" content="AI for Marketings | AI Tools Review & Marketing Insights">
+  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+  <meta name="description" content="Discover the best AI tools, reviews, comparisons, and guides to boost your digital marketing success at AIFORMARKETINGS.">
+  <meta property="og:description" content="Discover the best AI tools, reviews, comparisons, and guides to boost your digital marketing success at AIFORMARKETINGS.">
+  <meta name="twitter:description" content="Discover the best AI tools, reviews, comparisons, and guides to boost your digital marketing success at AIFORMARKETINGS.">
+  <meta itemprop="description" content="Discover the best AI tools, reviews, comparisons, and guides to boost your digital marketing success at AIFORMARKETINGS.">
+  <meta itemprop="name" content="AI for Marketings | AI Tools Review & Marketing Insights">
+  <meta property="og:type" content="website" />
+  <meta name="author" content="AIFORMARKETINGS Team">
+  <meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+  <meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+  <meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+  {% endblock %}
+  <link rel="canonical" href="{% block canonical %}{{ request.scheme }}://{{ request.get_host }}{{ request.path }}{% endblock %}" />
+  <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+  
+  <meta name="google-site-verification" content="q0TPuQxthlIeObrUML8hxldRas7HnAeOJqPSfxJk_3M" />
+  <meta name="trustpilot-one-time-domain-verification-id" content="90ad083c-0382-48f1-abde-f6bec9ce4512"/>
+  <meta name="msvalidate.01" content="839BA032AEC2D09AAF00828FECB7F16B" />
+  <meta name="p:domain_verify" content="facd74d0a09b83ffc7d3a1f2317f01b8"/>
+  <meta name="google-adsense-account" content="ca-pub-4917045915397928"/>
+  <meta property="og:locale" content="en_US" />
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-[#faf8f5] text-gray-800 font-sans antialiased">
+
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="{% url 'home' %}" class="text-2xl font-bold tracking-tight text-gray-900">aiformarketings<span class="text-red-600">.</span></a>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+          <a href="{% url 'home' %}" class="{% block nav_home %}hover:text-gray-900 transition{% endblock %}">Home</a>
+          <a href="{% url 'blog_home' %}" class="{% block nav_blog %}hover:text-gray-900 transition{% endblock %}">Blog</a>
+          <a href="{% url 'profile_list' %}" class="{% block nav_top10 %}hover:text-gray-900 transition{% endblock %}">Top 10</a>
+          <a href="{% url 'course_list' %}" class="{% block nav_courses %}hover:text-gray-900 transition{% endblock %}">Courses</a>
+          <a href="{% url 'glossary_index' %}" class="{% block nav_glossary %}hover:text-gray-900 transition{% endblock %}">Glossary</a>
+          <a href="{% url 'about' %}" class="{% block nav_about %}hover:text-gray-900 transition{% endblock %}">About</a>
+          <a href="{% url 'contact' %}" class="{% block nav_contact %}hover:text-gray-900 transition{% endblock %}">Contact</a>
+        </nav>
+        <div class="flex items-center gap-4">
+          <button id="search-btn" class="hidden sm:block text-gray-500 hover:text-gray-800 transition" title="Search" aria-label="Search">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+          </button>
+          <button class="md:hidden text-gray-600" title="Menu" aria-label="Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+<div id="search-bar" class="hidden bg-white border-b border-gray-200 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <form action="{% url 'search' %}" method="GET" role="search">
+      <div class="relative">
+        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+        <input type="search" id="search-input" name="q" placeholder="Search articles, courses, listicles..." class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition" autocomplete="off" />
+      </div>
+    </form>
+  </div>
+</div>
+
+  {% block content %}{% endblock %}
+
+  <footer class="mt-20 bg-gray-900 text-gray-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div><h3 class="text-white font-bold text-lg mb-4">aiformarketings<span class="text-red-600">.</span></h3><p class="text-sm leading-relaxed">Your hub for AI marketing insights, curated rankings, and free courses.</p></div>
+        <div>
+          <div class="hidden sm:block">
+            <h3 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Quick Links</h3>
+            <ul class="space-y-2 text-sm"><li><a href="{% url 'blog_home' %}" class="block py-1 hover:text-white transition">Blog</a></li><li><a href="{% url 'profile_list' %}" class="block py-1 hover:text-white transition">Top 10 Listicles</a></li><li><a href="{% url 'course_list' %}" class="block py-1 hover:text-white transition">Free Courses</a></li><li><a href="{% url 'glossary_index' %}" class="block py-1 hover:text-white transition">Glossary</a></li></ul>
+          </div>
+          <details class="group sm:hidden">
+            <summary class="flex items-center justify-between cursor-pointer list-none">
+              <h3 class="text-white font-semibold text-sm uppercase tracking-wider">Quick Links</h3>
+              <svg class="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <ul class="space-y-2 text-sm mt-3"><li><a href="{% url 'blog_home' %}" class="block py-1 hover:text-white transition">Blog</a></li><li><a href="{% url 'profile_list' %}" class="block py-1 hover:text-white transition">Top 10 Listicles</a></li><li><a href="{% url 'course_list' %}" class="block py-1 hover:text-white transition">Free Courses</a></li><li><a href="{% url 'glossary_index' %}" class="block py-1 hover:text-white transition">Glossary</a></li></ul>
+          </details>
+        </div>
+        <div>
+          <div class="hidden sm:block">
+            <h3 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Important Pages</h3>
+            <ul class="space-y-2 text-sm"><li><a href="{% url 'privacy' %}" class="block py-1 hover:text-white transition">Privacy Policy</a></li><li><a href="{% url 'about' %}" class="block py-1 hover:text-white transition">About Us</a></li><li><a href="{% url 'contact' %}" class="block py-1 hover:text-white transition">Contact</a></li></ul>
+          </div>
+          <details class="group sm:hidden">
+            <summary class="flex items-center justify-between cursor-pointer list-none">
+              <h3 class="text-white font-semibold text-sm uppercase tracking-wider">Important Pages</h3>
+              <svg class="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <ul class="space-y-2 text-sm mt-3"><li><a href="{% url 'privacy' %}" class="block py-1 hover:text-white transition">Privacy Policy</a></li><li><a href="{% url 'about' %}" class="block py-1 hover:text-white transition">About Us</a></li><li><a href="{% url 'contact' %}" class="block py-1 hover:text-white transition">Contact</a></li></ul>
+          </details>
+        </div>
+        <div><h3 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Contact</h3><ul class="space-y-2 text-sm"><li class="flex items-start gap-2"><svg class="w-4 h-4 text-gray-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><a href="mailto:hello@aiformarketings.com" class="block py-1 hover:text-white transition">hello@aiformarketings.com</a></li><li class="flex items-start gap-2"><svg class="w-4 h-4 text-gray-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>We respond within 24 hours</span></li><li class="flex items-start gap-2"><svg class="w-4 h-4 text-gray-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span>123 Marketing Lane, SF, CA 94105</span></li></ul></div>
+      </div>
+    </div>
+    <div class="border-t border-gray-800"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-center text-xs text-gray-400">&copy; 2026 aiformarketings. All rights reserved.</div></div>
+  </footer>
+
+<script defer src="{% static 'js/search-toggle.js' %}"></script>
+{% block extra_scripts %}{% endblock %}
+</body>
+</html>

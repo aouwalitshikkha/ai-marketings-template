@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% load static %}
+{% load course_extras %}
+{% block seo_head %}
+<title>{{ chapter.get_meta_title }} — AI for Marketings | AI Tools Review & Marketing Insights</title>
+<meta property="og:title" content="{{ chapter.get_meta_title }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name="twitter:title" content="{{ chapter.get_meta_title }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+<meta name="description" content="{{ chapter.get_meta_description }}">
+<meta property="og:description" content="{{ chapter.get_meta_description }}">
+<meta name="twitter:description" content="{{ chapter.get_meta_description }}">
+<meta itemprop="description" content="{{ chapter.get_meta_description }}">
+<meta itemprop="name" content="{{ chapter.get_meta_title }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta property="og:type" content="website" />
+<meta name="author" content="AIFORMARKETINGS Team">
+<meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+{% if course.image %}
+<meta name="twitter:image" content="https://aiformarketings.com{{ course.image.url }}">
+<meta property="og:image" content="https://aiformarketings.com{{ course.image.url }}">
+<meta itemprop="image" content="https://aiformarketings.com{{ course.image.url }}">
+{% else %}
+<meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+{% endif %}
+{% endblock %}
+
+{% block nav_courses %}text-gray-900 font-semibold{% endblock %}
+
+{% block content %}
+<div id="reading-progress" class="fixed top-0 left-0 h-1 bg-indigo-600 z-[60] w-0 transition-[width] duration-75 ease-out" aria-hidden="true"></div>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+  <nav class="text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-2">
+      <li><a href="{% url 'home' %}" class="hover:text-red-600 transition">Home</a></li>
+      <li><span class="mx-1 text-gray-300">›</span></li>
+      <li><a href="{% url 'course_list' %}" class="hover:text-indigo-600 transition">Courses</a></li>
+      <li><span class="mx-1 text-gray-300">›</span></li>
+      <li><a href="{{ course.get_absolute_url }}" class="hover:text-indigo-600 transition">{{ course.title }}</a></li>
+      <li><span class="mx-1 text-gray-300">›</span></li>
+      <li class="text-gray-600 truncate max-w-[12rem]" aria-current="page">{{ chapter.title }}</li>
+    </ol>
+  </nav>
+
+  <div class="lg:flex lg:gap-10 lg:items-start">
+
+    <aside class="hidden lg:block w-72 shrink-0">
+      <div class="sticky top-24">
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+          <a href="{{ course.get_absolute_url }}" class="block">
+            <p class="text-xs font-semibold uppercase tracking-widest text-indigo-600 mb-1">{{ course.level }}</p>
+            <h2 class="text-sm font-bold text-gray-900 leading-snug mb-3">{{ course.title }}</h2>
+          </a>
+          <p class="text-xs text-gray-500 mb-4">{{ total_chapters }} chapter{{ total_chapters|pluralize }}</p>
+          <div class="border-t border-gray-100 pt-4">
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-3">Contents</h3>
+            <ol class="space-y-1">
+              {% for ch in chapters %}
+              <li>
+                <a href="{{ ch.get_absolute_url }}" class="flex items-start gap-2 py-1.5 px-2 rounded-md text-sm transition {% if ch.slug == chapter.slug %}bg-indigo-50 text-indigo-700 font-semibold{% else %}text-gray-600 hover:bg-gray-50 hover:text-indigo-600{% endif %}">
+                  <span class="text-xs text-gray-500 shrink-0 mt-0.5">{{ ch.number }}</span>
+                  <span class="line-clamp-2">{{ ch.title }}</span>
+                </a>
+              </li>
+              {% endfor %}
+            </ol>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <article class="flex-1 min-w-0 max-w-3xl">
+
+      <div class="flex items-center gap-3 mb-4">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700">Chapter {{ chapter.number }}</span>
+        <span class="text-xs text-gray-500">Lesson {{ current_index }} of {{ total_chapters }}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-4">{{ chapter.title }}</h1>
+
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500 mb-10 pb-8 border-b border-gray-200">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>{{ chapter.reading_time }} min read</span>
+        </span>
+        <a href="{{ course.get_absolute_url }}" class="text-indigo-600 hover:text-indigo-700 font-medium">&larr; Back to course</a>
+      </div>
+
+      {% if chapter.summary %}
+      <p class="text-lg text-gray-600 leading-relaxed mb-10">{{ chapter.summary }}</p>
+      {% endif %}
+
+      {% if chapter.content %}
+      <div class="ckeditor-content mb-12">
+        {{ chapter.content|safe|linebreaks }}
+      </div>
+      {% endif %}
+
+      {% if chapter.key_topics %}
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Key Topics</h2>
+        <ul class="space-y-2 ml-6">
+          {% for topic in chapter.key_topics|lines_to_list %}
+          <li class="flex gap-3 text-gray-700"><span class="text-indigo-500 shrink-0">&rarr;</span><span>{{ topic }}</span></li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+
+      {% if chapter.practices.all %}
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Practice Exercises</h2>
+        <div class="space-y-4">
+          {% for practice in chapter.practices.all %}
+          <div class="bg-indigo-50/60 rounded-xl p-5 border border-indigo-100">
+            {% if practice.title %}<h3 class="font-bold text-gray-900 mb-2">{{ practice.title }}</h3>{% endif %}
+            {% if practice.description %}<div class="text-sm text-gray-700 leading-relaxed mb-3">{{ practice.description|linebreaks }}</div>{% endif %}
+            {% if practice.tip %}
+            <div class="flex items-start gap-2 text-sm bg-white rounded-lg p-3 border border-indigo-100">
+              <svg class="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+              <div><span class="font-semibold text-indigo-700">Tip:</span> <span class="text-gray-700">{{ practice.tip|linebreaks }}</span></div>
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+
+      {% if chapter.checklist_items.all %}
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Checklist</h2>
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+          <ul class="space-y-3">
+            {% for item in chapter.checklist_items.all %}
+            <li class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded border-2 border-gray-300 shrink-0 mt-0.5" aria-hidden="true"></span>
+              <span class="text-sm text-gray-700">{{ item.description }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+      {% endif %}
+
+      <nav class="flex items-center justify-between gap-4 pt-8 border-t border-gray-200" aria-label="Lesson navigation">
+        {% if prev_chapter %}
+        <a href="{{ prev_chapter.get_absolute_url }}" class="group flex-1 max-w-xs">
+          <span class="block text-xs text-gray-500 mb-1">&larr; Previous</span>
+          <span class="block text-sm font-semibold text-gray-900 group-hover:text-indigo-600 transition line-clamp-1">{{ prev_chapter.title }}</span>
+        </a>
+        {% else %}
+        <span class="flex-1 max-w-xs"></span>
+        {% endif %}
+
+        <a href="{{ course.get_absolute_url }}" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-500 hover:bg-indigo-100 hover:text-indigo-600 transition shrink-0" aria-label="All chapters" title="All chapters">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+        </a>
+
+        {% if next_chapter %}
+        <a href="{{ next_chapter.get_absolute_url }}" class="group flex-1 max-w-xs text-right">
+          <span class="block text-xs text-gray-500 mb-1">Next &rarr;</span>
+          <span class="block text-sm font-semibold text-gray-900 group-hover:text-indigo-600 transition line-clamp-1">{{ next_chapter.title }}</span>
+        </a>
+        {% else %}
+        <span class="flex-1 max-w-xs"></span>
+        {% endif %}
+      </nav>
+
+    </article>
+
+  </div>
+
+</main>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function(){var e=document.getElementById("reading-progress");if(e){var t=function(){var t=document.documentElement,n=t.scrollHeight-t.clientHeight,o=n>0?(t.scrollTop||document.body.scrollTop)/n:0;e.style.width=(100*o).toFixed(2)+"%"};window.addEventListener("scroll",t,{passive:!0}),window.addEventListener("resize",t,{passive:!0}),t()}})();
+</script>
+{% endblock %}

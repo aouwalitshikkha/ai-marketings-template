@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load blog_extras %}
+{% block seo_head %}
+<title>{{ category.name }} — AI for Marketings | AI Tools Review & Marketing Insights</title>
+<meta property="og:title" content="{{ category.name }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name="twitter:title" content="{{ category.name }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+<meta name="description" content="{{ category.description|truncatewords:25 }}">
+<meta property="og:description" content="{{ category.description|truncatewords:25 }}">
+<meta name="twitter:description" content="{{ category.description|truncatewords:25 }}">
+<meta itemprop="description" content="{{ category.description|truncatewords:25 }}">
+<meta itemprop="name" content="{{ category.name }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta property="og:type" content="website" />
+<meta name="author" content="AIFORMARKETINGS Team">
+<meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+{% with first_post=posts|first %}
+{% if first_post and first_post.featured_image %}
+<meta name="twitter:image" content="https://aiformarketings.com{{ first_post.featured_image.url }}">
+<meta property="og:image" content="https://aiformarketings.com{{ first_post.featured_image.url }}">
+<meta itemprop="image" content="https://aiformarketings.com{{ first_post.featured_image.url }}">
+{% else %}
+<meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+{% endif %}
+{% endwith %}
+{% endblock %}
+
+{% block nav_blog %}text-gray-900 font-semibold{% endblock %}
+
+{% block content %}
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+
+  <nav class="text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-2">
+      <li><a href="{% url 'home' %}" class="hover:text-red-600 transition">Home</a></li>
+      <li><span class="mx-1 text-gray-300">›</span></li>
+      <li><a href="{% url 'blog_home' %}" class="hover:text-red-600 transition">Blog</a></li>
+      <li><span class="mx-1 text-gray-300">›</span></li>
+      <li class="text-red-700 font-semibold" aria-current="page">{{ category.name }}</li>
+    </ol>
+  </nav>
+
+  <section class="mb-8 sm:mb-10">
+    <p class="text-red-700 text-sm font-semibold uppercase tracking-widest mb-2">Category</p>
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight tracking-tight">{{ category.name }}</h1>
+    {% if category.description %}
+    <p class="mt-3 text-gray-500 text-lg max-w-2xl leading-relaxed">{{ category.description }}</p>
+    {% endif %}
+  </section>
+
+  <div class="flex flex-wrap gap-2 mb-10 sm:mb-12" role="navigation" aria-label="Categories">
+    <a href="{% url 'blog_home' %}" class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:border-red-300 hover:text-red-600 transition">All</a>
+    {% for cat in categories %}
+    <a href="{% url 'blog_category' cat.slug %}" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition {% if cat.slug == category.slug %}bg-red-600 text-white border-red-600{% else %}bg-white text-gray-600 border-gray-200 hover:border-red-300 hover:text-red-600{% endif %}">
+      <span>{{ cat.name }}</span>
+      <span class="text-xs {% if cat.slug == category.slug %}text-red-100{% else %}text-gray-500{% endif %}">{{ cat.post_count }}</span>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for post in posts %}
+    <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+      <a href="{{ post.get_absolute_url }}" class="block overflow-hidden" aria-label="{{ post.title }}">
+        <div class="aspect-[16/10] overflow-hidden bg-gray-100">
+          {% if post.featured_image %}
+          <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ post.featured_image.url }}" alt="" loading="lazy" />
+          {% else %}
+          <img width="800" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{% static 'images/placeholder.svg' %}" alt="" loading="lazy" />
+          {% endif %}
+        </div>
+      </a>
+      <div class="p-5 sm:p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xs text-gray-500">{{ post.publish_date|date:"M d, Y" }}</span>
+        </div>
+        <h2 class="text-base sm:text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-red-600 transition"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">{{ post.short_answer|default:post.body|striptags|truncatewords:20 }}</p>
+        <div class="flex items-center gap-1 text-xs text-gray-500 pt-3 border-t border-gray-100">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>{{ post.body|striptags|read_time }} min read</span>
+        </div>
+      </div>
+    </article>
+    {% empty %}
+    <div class="col-span-full text-center py-16">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">No posts in this category</h2>
+      <p class="text-gray-500">Check back soon.</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% if page_obj.has_other_pages %}
+  {% with total=page_obj.paginator.num_pages current=page_obj.number %}
+  <nav class="mt-12 sm:mt-16 mb-8 flex items-center justify-center gap-2" aria-label="Pagination">
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-100 text-sm font-medium transition" aria-label="Previous page" rel="prev">&laquo;</a>
+    {% endif %}
+    {% if current > 2 %}
+    <a href="?page=1" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-100 text-sm font-medium transition">1</a>
+    {% if current > 3 %}
+    <span class="inline-flex items-center justify-center w-10 h-10 text-gray-400 text-sm" aria-hidden="true">...</span>
+    {% endif %}
+    {% endif %}
+    {% for num in page_obj.paginator.page_range %}
+      {% if num >= current|add:-1 and num <= current|add:1 %}
+        {% if num == current %}
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-red-600 text-white text-sm font-semibold" aria-current="page">{{ num }}</span>
+        {% else %}
+        <a href="?page={{ num }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-100 text-sm font-medium transition">{{ num }}</a>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if current < total|add:-1 %}
+      {% if current < total|add:-2 %}
+      <span class="inline-flex items-center justify-center w-10 h-10 text-gray-400 text-sm" aria-hidden="true">...</span>
+      {% endif %}
+    <a href="?page={{ total }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-100 text-sm font-medium transition">{{ total }}</a>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-600 hover:bg-gray-100 text-sm font-medium transition" aria-label="Next page" rel="next">&raquo;</a>
+    {% endif %}
+  </nav>
+  {% endwith %}
+  {% endif %}
+</main>
+{% endblock %}

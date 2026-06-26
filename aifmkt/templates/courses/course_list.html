@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+{% load course_extras %}
+{% block seo_head %}
+<title>Courses — AI for Marketings | AI Tools Review & Marketing Insights</title>
+<meta property="og:title" content="Courses — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name="twitter:title" content="Courses — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+<meta name="description" content="Free, hands-on AI marketing courses at AIFORMARKETINGS. Learn ChatGPT, prompt engineering, AI content strategy, SEO, and more.">
+<meta property="og:description" content="Free, hands-on AI marketing courses at AIFORMARKETINGS. Learn ChatGPT, prompt engineering, AI content strategy, SEO, and more.">
+<meta name="twitter:description" content="Free, hands-on AI marketing courses at AIFORMARKETINGS. Learn ChatGPT, prompt engineering, AI content strategy, SEO, and more.">
+<meta itemprop="description" content="Free, hands-on AI marketing courses at AIFORMARKETINGS. Learn ChatGPT, prompt engineering, AI content strategy, SEO, and more.">
+<meta itemprop="name" content="Courses — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta property="og:type" content="website" />
+<meta name="author" content="AIFORMARKETINGS Team">
+<meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+{% with first_course=courses|first %}
+{% if first_course and first_course.image %}
+<meta name="twitter:image" content="https://aiformarketings.com{{ first_course.image.url }}">
+<meta property="og:image" content="https://aiformarketings.com{{ first_course.image.url }}">
+<meta itemprop="image" content="https://aiformarketings.com{{ first_course.image.url }}">
+{% else %}
+<meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+{% endif %}
+{% endwith %}
+{% endblock %}
+
+{% block nav_courses %}text-gray-900 font-semibold{% endblock %}
+
+{% block content %}
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+
+  <nav class="text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-2">
+      <li><a href="{% url 'home' %}" class="hover:text-red-600 transition">Home</a></li>
+      <li><span class="mx-1 text-gray-300">›</span></li>
+      <li class="text-indigo-700 font-semibold" aria-current="page">Courses</li>
+    </ol>
+  </nav>
+
+  <section class="mb-10 pb-10 border-b border-gray-200">
+    <p class="text-indigo-600 text-sm font-semibold uppercase tracking-widest mb-2">Learn</p>
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight tracking-tight">Courses</h1>
+    <p class="mt-3 text-gray-500 text-lg max-w-2xl leading-relaxed">Free, hands-on courses designed to help marketers master AI tools and strategies. All courses are self-paced and completely free.</p>
+
+    <div class="flex flex-wrap gap-2 mt-6" role="group" aria-label="Filter by level">
+      <a href="{% url 'course_list' %}" class="px-4 py-2 rounded-lg text-sm font-semibold transition {% if not active_level %}bg-indigo-600 text-white{% else %}bg-white text-gray-700 border border-gray-200 hover:bg-gray-50{% endif %}">All</a>
+      {% for level in "Beginner,Intermediate,Advance"|split:"," %}
+      <a href="?level={{ level }}" class="px-4 py-2 rounded-lg text-sm font-medium transition {% if active_level == level %}bg-indigo-600 text-white{% else %}bg-white text-gray-700 border border-gray-200 hover:bg-gray-50{% endif %}">{{ level }}</a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <h2 class="sr-only">Course List</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for course in courses %}
+    <article class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+      <a href="{{ course.get_absolute_url }}" class="block overflow-hidden" aria-label="{{ course.title }}">
+        <div class="aspect-[16/9] overflow-hidden bg-gray-100">
+          {% if course.image %}
+          <img width="800" height="450" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ course.image.url }}" alt="{{ course.title }}" loading="lazy" />
+          {% else %}
+          <img width="800" height="450" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{% static 'images/placeholder.svg' %}" alt="{{ course.title }}" loading="lazy" />
+          {% endif %}
+        </div>
+      </a>
+      <div class="p-5 sm:p-6">
+        <div class="flex items-center gap-2 mb-3">
+          {% if course.level == 'Beginner' %}
+          <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700">{{ course.level }}</span>
+          {% elif course.level == 'Intermediate' %}
+          <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700">{{ course.level }}</span>
+          {% else %}
+          <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-100 text-purple-700">{{ course.level }}</span>
+          {% endif %}
+          <span class="text-xs text-gray-500">{{ course.lessons_count }} lesson{{ course.lessons_count|pluralize }}</span>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-indigo-600 transition"><a href="{{ course.get_absolute_url }}">{{ course.title }}</a></h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">{{ course.description|truncatewords:25 }}</p>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2 text-xs text-gray-500">
+            <img width="100" height="100" class="w-7 h-7 rounded-full object-cover" src="{% static 'images/placeholder.svg' %}" alt="Abdul Aouwal" loading="lazy" />
+            <span class="text-gray-700 font-medium">Abdul Aouwal</span>
+          </div>
+          {% if course.duration %}
+          <span class="text-xs text-gray-500">{{ course.duration }}</span>
+          {% endif %}
+        </div>
+      </div>
+    </article>
+    {% empty %}
+    <div class="col-span-full text-center py-16">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">No courses yet</h2>
+      <p class="text-gray-500">Check back soon for new courses.</p>
+    </div>
+    {% endfor %}
+  </div>
+
+</main>
+{% endblock %}

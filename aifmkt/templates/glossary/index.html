@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+{% load glossary_extras %}
+
+{% block seo_head %}
+<title>{{ page_title|default:"AI Marketing Glossary" }} — AI for Marketings | AI Tools Review & Marketing Insights</title>
+<meta property="og:title" content="{{ page_title|default:"AI Marketing Glossary" }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name="twitter:title" content="{{ page_title|default:"AI Marketing Glossary" }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+<meta name="description" content="{{ page_description|default:'Your guide to AI marketing terminology. Clear definitions of key terms, tools, and concepts.' }}">
+<meta property="og:description" content="{{ page_description|default:'Your guide to AI marketing terminology. Clear definitions of key terms, tools, and concepts.' }}">
+<meta name="twitter:description" content="{{ page_description|default:'Your guide to AI marketing terminology. Clear definitions of key terms, tools, and concepts.' }}">
+<meta itemprop="description" content="{{ page_description|default:'Your guide to AI marketing terminology. Clear definitions of key terms, tools, and concepts.' }}">
+<meta itemprop="name" content="{{ page_title|default:"AI Marketing Glossary" }} — AI for Marketings | AI Tools Review & Marketing Insights">
+<meta property="og:type" content="website" />
+<meta name="author" content="AIFORMARKETINGS Team">
+<meta property="og:image:alt" content="AI Tools and Marketing Insights Portal">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta property="og:image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+<meta itemprop="image" content="https://aiformarketings.com{% static 'images/aiformarketings.jpg' %}">
+{% endblock %}
+
+{% block nav_glossary %}text-gray-900 font-semibold{% endblock %}
+
+{% block extra_head %}
+
+<script type="application/ld+json">{{ groups|defined_term_set|safe }}</script>
+{% endblock %}
+
+{% block content %}
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+
+  <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-2">
+      <li><a href="{% url 'home' %}" class="hover:text-red-600 transition">Home</a></li>
+      <li><span class="mx-1 text-gray-300">›</span></li>
+      <li class="text-red-700 font-semibold" aria-current="page">{{ page_title|default:"AI Marketing Glossary" }}</li>
+    </ol>
+  </nav>
+
+  <section class="mb-10 pb-10 border-b border-gray-200">
+    <p class="text-red-700 text-sm font-semibold uppercase tracking-widest mb-2">Reference</p>
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight tracking-tight">AI Marketing Glossary</h1>
+    <p class="mt-3 text-gray-500 text-lg max-w-2xl leading-relaxed">Clear definitions of key AI marketing terms, tools, and concepts. Use this as your quick reference guide.</p>
+
+    <div class="relative mt-6 max-w-md">
+      <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+      <input type="text" id="glossary-filter" placeholder="Filter terms..." class="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition" autocomplete="off" />
+      <button id="glossary-filter-clear" type="button" class="hidden absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 inline-flex items-center justify-center rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition" aria-label="Clear filter" title="Clear">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <div id="glossary-nav" class="sticky top-16 z-40 bg-[#faf8f5]/95 backdrop-blur py-4 mb-10 border-b border-gray-200">
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <nav class="flex flex-wrap gap-2" aria-label="Glossary letter groups">
+        {% for group in groups %}
+        {% if group.count > 0 %}
+        <a href="#{{ group.id }}" class="group-link px-4 py-2 rounded-lg text-sm font-semibold transition" data-target="{{ group.id }}" data-active="false">{{ group.label }} <span class="inline-flex items-center justify-center w-5 h-5 rounded-full text-xs font-bold ml-1 group-count-badge">{{ group.count }}</span></a>
+        {% else %}
+        <span class="px-4 py-2 rounded-lg text-sm font-semibold bg-gray-50 text-gray-300 cursor-not-allowed" aria-disabled="true">{{ group.label }} <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gray-100 text-gray-300 text-xs font-bold ml-1">0</span></span>
+        {% endif %}
+        {% endfor %}
+      </nav>
+      <a href="{% url 'glossary_markdown' %}" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-700 transition shrink-0" title="View as Markdown">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        View as Markdown
+      </a>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto space-y-10 mb-16" id="glossary-list">
+    {% for group in groups %}
+    {% if group.count > 0 %}
+    <section id="{{ group.id }}" class="glossary-group">
+      <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-3"><span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-red-100 text-red-700 text-sm font-bold shrink-0">{{ group.label }}</span><span class="text-gray-500 text-sm font-normal">{{ group.count }} term{{ group.count|pluralize }}</span></h2>
+      <div class="bg-white rounded-xl border border-gray-100 shadow-sm divide-y divide-gray-100">
+        {% for term in group.terms %}
+        <div class="term-item group relative px-5 py-4 hover:bg-red-50/40 transition" id="term-{{ term.pk }}">
+          <h3 class="font-semibold text-gray-900 pr-8">{{ term.term }}</h3>
+          <div class="ckeditor-content text-sm text-gray-600 mt-1.5 leading-relaxed [&_p]:text-sm [&_p]:text-gray-600 [&_p]:leading-relaxed [&_p]:mb-2 [&_ul]:text-sm [&_ol]:text-sm [&_a]:text-blue-600 [&_li]:mb-1">{{ term.description|safe }}</div>
+          <a href="#term-{{ term.pk }}" class="term-link absolute top-4 right-4 inline-flex items-center justify-center w-7 h-7 rounded-md text-gray-300 hover:text-red-600 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition" aria-label="Link to {{ term.term }}" title="Copy link to this term" data-term="{{ term.pk }}">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+  <div id="no-term-match" class="hidden text-center py-16 mb-16 max-w-4xl mx-auto">
+    <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">No terms match</h2>
+    <p class="text-gray-500" id="no-term-query">Try a different search term.</p>
+  </div>
+
+</main>
+
+<button id="back-to-top" class="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-red-600 text-white shadow-lg flex items-center justify-center hover:bg-red-700 transition translate-y-20 opacity-0 pointer-events-none" aria-label="Back to top">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+</button>
+{% endblock %}
+
+{% block extra_scripts %}
+<script defer src="{% static 'js/glossary.js' %}"></script>
+{% endblock %}
