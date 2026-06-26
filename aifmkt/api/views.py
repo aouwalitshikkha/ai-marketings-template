@@ -1,14 +1,14 @@
 from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from glossary.models import GlossaryTerm, GlossaryPageConfig
-from blog.models import Post, Category, Tag
+from blog.models import Post, Category, Tag, Placeholder
 from courses.models import Course, Chapter
 from top10s.models import Profiles
 from .serializers import (
     GlossaryTermSerializer, GlossaryTermListSerializer, GlossaryPageConfigSerializer,
     PostListSerializer, PostDetailSerializer, CategorySerializer, TagSerializer,
     CourseListSerializer, CourseDetailSerializer, ChapterSerializer,
-    ProfilesListSerializer, ProfilesDetailSerializer,
+    ProfilesListSerializer, ProfilesDetailSerializer, PlaceholderSerializer,
 )
 
 
@@ -36,11 +36,11 @@ class GlossaryPageConfigViewSet(viewsets.ModelViewSet):
 # ── Blog ──
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.select_related('author', 'category').prefetch_related('tags', 'faqs').all()
+    queryset = Post.objects.select_related('category').prefetch_related('tags', 'faqs').all()
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['status', 'category__slug', 'author']
+    filterset_fields = ['status', 'category__slug']
     search_fields = ['title', 'short_answer', 'body']
-    ordering_fields = ['publish_date', 'created_at', 'updated_at', 'title']
+    ordering_fields = ['created_at', 'created_at', 'updated_at', 'title']
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -51,8 +51,8 @@ class PostViewSet(viewsets.ModelViewSet):
         qs = super().get_queryset()
         if self.action == 'list':
             return qs.only(
-                'id', 'title', 'slug', 'author', 'category', 'status',
-                'short_answer', 'publish_date', 'created_at', 'updated_at',
+                'id', 'title', 'slug', 'category', 'status',
+                'short_answer', 'created_at', 'updated_at',
                 'featured_image', 'meta_title', 'meta_description',
             )
         return qs
@@ -96,6 +96,17 @@ class ChapterViewSet(viewsets.ModelViewSet):
     filterset_fields = ['course__slug', 'status']
     search_fields = ['title', 'summary', 'content']
     ordering_fields = ['number', 'created_at', 'updated_at']
+
+
+# ── Blog Placeholders ──
+
+class PlaceholderViewSet(viewsets.ModelViewSet):
+    queryset = Placeholder.objects.select_related('post').all()
+    serializer_class = PlaceholderSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filterset_fields = ['post', 'key']
+    search_fields = ['key', 'value']
+    ordering_fields = ['key']
 
 
 # ── Top 10 ──

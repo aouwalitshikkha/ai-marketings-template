@@ -8,9 +8,9 @@ def home_view(request):
     posts = (
         Post.objects.filter(status=Post.Status.PUBLISHED)
         .select_related("category")
-        .order_by("-publish_date")[:3]
+        .order_by("-updated_at")[:3]
     )
-    profiles = Profiles.objects.order_by("-created_at")[:3]
+    profiles = Profiles.objects.order_by("-updated_at")[:3]
 
     context = {
         "posts": posts,

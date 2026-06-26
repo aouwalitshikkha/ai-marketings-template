@@ -75,7 +75,7 @@
       </a>
       <div class="p-5 sm:p-6">
         <div class="flex items-center gap-2 mb-3">
-          <span class="text-xs text-gray-500">{{ post.publish_date|date:"M d, Y" }}</span>
+          <span class="text-xs text-gray-500">{{ post.updated_at|date:"M d, Y" }}</span>
         </div>
         <h2 class="text-base sm:text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-red-600 transition"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
         <p class="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">{{ post.short_answer|default:post.body|striptags|truncatewords:20 }}</p>

@@ -18,17 +18,17 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'category', 'status', 'publish_date', 'indexable']
-    list_filter = ['status', 'category', 'publish_date', 'indexable']
+    list_display = ['title', 'category', 'status', 'created_at', 'indexable']
+    list_filter = ['status', 'category', 'created_at', 'indexable']
     search_fields = ['title', 'body']
     prepopulated_fields = {'slug': ['title']}
-    readonly_fields = ['publish_date', 'created_at', 'updated_at']
+    readonly_fields = ['created_at', 'updated_at']
     fieldsets = [
-        ('Content', {'fields': ['title', 'slug', 'author', 'body', 'short_answer']}),
+        ('Content', {'fields': ['title', 'slug', 'body', 'short_answer']}),
         ('Taxonomy', {'fields': ['category', 'tags']}),
         ('Media', {'fields': ['featured_image']}),
         ('SEO', {'fields': ['meta_title', 'meta_description', 'indexable']}),
-        ('Publishing', {'fields': ['status', 'publish_date']}),
+        ('Publishing', {'fields': ['status']}),
         ('Timestamps', {'fields': ['created_at', 'updated_at']}),
     ]
 

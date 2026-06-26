@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from glossary.models import GlossaryTerm, GlossaryPageConfig
-from blog.models import Post, Category, Tag, FAQ
+from blog.models import Post, Category, Tag, FAQ, Placeholder
 from courses.models import Course, Chapter, Practice, ChecklistItem
 from top10s.models import Profiles, Tool
 
@@ -50,35 +50,43 @@ class FAQSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'updated_at']
 
 
+class PlaceholderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Placeholder
+        fields = ['id', 'post', 'key', 'value', 'image', 'alt_text']
+        read_only_fields = ['id']
+
+
 class PostListSerializer(serializers.ModelSerializer):
     category_name = serializers.CharField(source='category.name', read_only=True, allow_null=True)
-    author_name = serializers.CharField(source='author.username', read_only=True)
     tags = serializers.StringRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Post
         fields = [
-            'id', 'title', 'slug', 'author_name', 'category_name', 'tags',
-            'short_answer', 'status', 'publish_date', 'created_at', 'updated_at',
+            'id', 'title', 'slug', 'category_name', 'tags',
+            'short_answer', 'status', 'created_at', 'updated_at',
             'featured_image', 'meta_title', 'meta_description',
         ]
-        read_only_fields = ['id', 'created_at', 'updated_at', 'publish_date']
+        read_only_fields = ['id', 'created_at', 'updated_at']
 
 
 class PostDetailSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
+    category_id = serializers.PrimaryKeyRelatedField(
+        queryset=Category.objects.all(), source='category', write_only=True
+    )
     tags = TagSerializer(many=True, read_only=True)
-    author_name = serializers.CharField(source='author.username', read_only=True)
     faqs = FAQSerializer(many=True, read_only=True)
 
     class Meta:
         model = Post
         fields = [
-            'id', 'title', 'slug', 'author_name', 'body', 'category', 'tags',
-            'short_answer', 'status', 'publish_date', 'created_at', 'updated_at',
+            'id', 'title', 'slug', 'body', 'category', 'category_id', 'tags',
+            'short_answer', 'status', 'created_at', 'updated_at',
             'featured_image', 'meta_title', 'meta_description', 'faqs',
         ]
-        read_only_fields = ['id', 'created_at', 'updated_at', 'publish_date']
+        read_only_fields = ['id', 'created_at', 'updated_at']
 
 
 # ── Courses ──

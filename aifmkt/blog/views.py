@@ -13,13 +13,13 @@ class BlogHomeView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        return Post.objects.filter(status=Post.Status.PUBLISHED).select_related('author', 'category').prefetch_related('tags')
+        return Post.objects.filter(status=Post.Status.PUBLISHED).select_related('category').prefetch_related('tags')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.annotate(post_count=Count('posts'))
         context['tags'] = Tag.objects.all()
-        context['recent_posts'] = Post.objects.filter(status=Post.Status.PUBLISHED).order_by('-publish_date')[:5]
+        context['recent_posts'] = Post.objects.filter(status=Post.Status.PUBLISHED).order_by('-updated_at')[:5]
         return context
 
 
@@ -29,7 +29,7 @@ class PostDetailView(DetailView):
     context_object_name = 'post'
 
     def get_queryset(self):
-        return Post.objects.filter(status=Post.Status.PUBLISHED).select_related('author', 'category').prefetch_related('tags', 'faqs', 'placeholders')
+        return Post.objects.filter(status=Post.Status.PUBLISHED).select_related('category').prefetch_related('tags', 'faqs', 'placeholders')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -57,7 +57,7 @@ class PostMarkdownView(DetailView):
             f"---\n"
             f"title: {post.title}\n"
             f"author: Abdul Aouwal\n"
-            f"date: {post.publish_date.date()}\n"
+            f"date: {post.updated_at.date()}\n"
             f"slug: {post.slug}\n"
             f"---\n\n"
             f"# {post.title}\n\n"
@@ -77,12 +77,12 @@ class CategoryView(ListView):
         return Post.objects.filter(
             status=Post.Status.PUBLISHED,
             category=self.category
-        ).select_related('author', 'category').prefetch_related('tags')
+        ).select_related('category').prefetch_related('tags')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category'] = self.category
         context['categories'] = Category.objects.annotate(post_count=Count('posts'))
         context['tags'] = Tag.objects.all()
-        context['recent_posts'] = Post.objects.filter(status=Post.Status.PUBLISHED).order_by('-publish_date')[:5]
+        context['recent_posts'] = Post.objects.filter(status=Post.Status.PUBLISHED).order_by('-updated_at')[:5]
         return context

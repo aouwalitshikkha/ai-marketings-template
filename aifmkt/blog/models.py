@@ -1,6 +1,5 @@
 import os
 from django.db import models
-from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
@@ -120,11 +119,6 @@ class Post(models.Model):
         unique=True,  # Changed to unique=True for the site/blog/slug/ URL structure
         help_text="A URL-friendly version of the title. Must be unique."
     )
-    author = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name='blog_posts'
-    )
     # This is the field for your Django Rich Text Editor content
     body = RichTextField(
         help_text="The main content of the post. Use the rich text editor."
@@ -150,12 +144,6 @@ class Post(models.Model):
         related_name='posts'
     )
 
-    # Date and Status fields
-    publish_date = models.DateTimeField(
-        auto_now_add=True,
-        help_text="The date and time the post is published."
-    )
-    
     indexable = models.BooleanField(
     default=True,
     help_text="If unchecked, adds 'noindex, nofollow' for this page."
@@ -184,9 +172,9 @@ class Post(models.Model):
     short_answer = models.TextField(blank=True)
 
     class Meta:
-        ordering = ['-publish_date']
+        ordering = ['-updated_at']
         indexes = [
-            models.Index(fields=['-publish_date']),
+            models.Index(fields=['-updated_at']),
         ]
 
     def __str__(self):
@@ -216,7 +204,7 @@ class Post(models.Model):
             "headline": self.meta_title or self.title,
             "description": self.meta_description or (self.short_answer or ""),
             "image": [image_url],
-            "datePublished": self.publish_date.isoformat(),
+            "datePublished": self.created_at.isoformat(),
             "dateModified": self.updated_at.isoformat(),
             "author": {
                 "@type": "Person",
