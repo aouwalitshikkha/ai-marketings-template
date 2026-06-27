@@ -17,7 +17,7 @@ class Profiles(models.Model):
     meta_title = models.CharField(max_length=255, blank=True, null=True)
     meta_description = models.TextField(blank=True, null=True)
 
-    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
@@ -54,10 +54,6 @@ class Profiles(models.Model):
     def __str__(self):
         return self.title
 
-    class Meta:
-        ordering = ["-created_at"]
-        verbose_name = "Top 10 Profile"
-        verbose_name_plural = "Top 10 Profiles"
 
 
 class Tool(models.Model):
@@ -85,8 +81,6 @@ class Tool(models.Model):
     def pros_list(self):
         return [p.strip() for p in self.pros.split("\n") if p.strip()]
 
-    class Meta:
-        ordering = ["order", "id"]
 
 
 class PlaceholderProfile(models.Model):
