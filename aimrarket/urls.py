@@ -49,7 +49,7 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('glossary/', include('glossary.urls')),
     path('top/', include('top10s.urls')),
-    path('courses/', include('courses.urls')),
+    path('hub/', include('courses.urls')),
     path('search/', include('search.urls')),
     path('', include('pages.urls')),
     path('api/', include('api.urls')),
