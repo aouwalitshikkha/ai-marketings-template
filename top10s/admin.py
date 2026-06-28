@@ -14,6 +14,7 @@ class ToolInline(admin.StackedInline):
         "pros_label",
         "pros",
         "personal_review",
+        "order",
     ]
 
 
@@ -62,8 +63,10 @@ class ProfilesAdmin(admin.ModelAdmin):
 
 @admin.register(Tool)
 class ToolAdmin(admin.ModelAdmin):
-    list_display = ("name", "blog_post")
+    list_display = ("name", "blog_post", "order")
+    list_editable = ("order",)
     search_fields = ("name",)
+    ordering = ("order",)
 
 
 @admin.register(PlaceholderProfile)

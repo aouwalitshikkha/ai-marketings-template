@@ -3,8 +3,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from glossary.models import GlossaryTerm, GlossaryPageConfig
 from blog.models import Post, Category, Tag, Placeholder
 from courses.models import Course, Chapter
-from django.db.models import Prefetch
-from top10s.models import Profiles, Tool
+from top10s.models import Profiles
 from .serializers import (
     GlossaryTermSerializer, GlossaryTermListSerializer, GlossaryPageConfigSerializer,
     PostListSerializer, PostDetailSerializer, CategorySerializer, TagSerializer,
@@ -113,9 +112,7 @@ class PlaceholderViewSet(viewsets.ModelViewSet):
 # ── Top 10 ──
 
 class ProfilesViewSet(viewsets.ModelViewSet):
-    queryset = Profiles.objects.prefetch_related(
-        Prefetch('tools', queryset=Tool.objects.order_by('order'))
-    ).all()
+    queryset = Profiles.objects.prefetch_related('tools').all()
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['title']
     ordering_fields = ['created_at', 'updated_at', 'title']
