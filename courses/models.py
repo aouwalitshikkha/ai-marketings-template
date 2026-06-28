@@ -4,10 +4,30 @@ import math
 from django.urls import reverse
 
 
+class CourseCategory(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+    description = models.TextField(blank=True, help_text="What you'll learn blurb for the hub section")
+    icon = models.CharField(max_length=50, blank=True, help_text="Emoji or icon label for the category")
+    order = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['order', 'name']
+        verbose_name_plural = "Course categories"
+
+    def __str__(self):
+        return self.name
+
+
 class Course(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, blank=True)
     category = models.CharField(max_length=100, blank=True)
+    course_category = models.ForeignKey(
+        CourseCategory, on_delete=models.SET_NULL,
+        null=True, blank=True, related_name='courses'
+    )
     is_featured = models.BooleanField(default=False)
     description = models.TextField(blank=True)
     level = models.CharField(

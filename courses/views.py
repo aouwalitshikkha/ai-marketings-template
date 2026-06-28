@@ -1,22 +1,32 @@
 from django.views.generic import ListView, DetailView
 from django.shortcuts import get_object_or_404, render
-from .models import Course, Chapter
+from .models import Course, Chapter, CourseCategory
 
 
-class CourseListView(ListView):
-    model = Course
+class CourseHubView(ListView):
+    model = CourseCategory
     template_name = "courses/course_list.html"
-    context_object_name = "courses"
+    context_object_name = "categories"
 
     def get_queryset(self):
-        qs = Course.objects.prefetch_related("chapters")
-        level = self.request.GET.get("level")
-        if level and level in ("Beginner", "Intermediate", "Advance"):
-            qs = qs.filter(level=level)
+        qs = CourseCategory.objects.prefetch_related("courses__chapters")
         return qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        level = self.request.GET.get("level")
+        sections = []
+        for cat in context["categories"]:
+            courses = cat.courses.all()
+            if level and level in ("Beginner", "Intermediate", "Advance"):
+                courses = courses.filter(level=level)
+            if courses:
+                sections.append({
+                    "category": cat,
+                    "courses": courses,
+                    "count": courses.count(),
+                })
+        context["sections"] = sections
         context["active_level"] = self.request.GET.get("level", "")
         return context
 
@@ -33,7 +43,10 @@ class CourseDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         course = self.object
         context["chapters"] = course.chapters.filter(status="published")
-        context["related_courses"] = Course.objects.exclude(pk=course.pk)[:3]
+        related = Course.objects.exclude(pk=course.pk)
+        if course.course_category:
+            related = related.filter(course_category=course.course_category)
+        context["related_courses"] = related[:3]
         return context
 
 

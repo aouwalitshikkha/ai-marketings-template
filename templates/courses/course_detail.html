@@ -37,6 +37,10 @@
       <li><a href="{% url 'home' %}" class="hover:text-red-600 transition">Home</a></li>
       <li><span class="mx-1 text-gray-300">›</span></li>
       <li><a href="{% url 'course_list' %}" class="hover:text-indigo-600 transition">Courses</a></li>
+      {% if course.course_category %}
+      <li><span class="mx-1 text-gray-300">›</span></li>
+      <li><a href="{% url 'course_list' %}#cat-{{ course.course_category.slug }}" class="hover:text-indigo-600 transition">{{ course.course_category.name }}</a></li>
+      {% endif %}
       <li><span class="mx-1 text-gray-300">›</span></li>
       <li class="text-gray-600 truncate max-w-[12rem] sm:max-w-xs" aria-current="page">{{ course.title }}</li>
     </ol>

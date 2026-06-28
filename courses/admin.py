@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, Chapter, Practice, ChecklistItem
+from .models import Course, Chapter, Practice, ChecklistItem, CourseCategory
 
 
 class PracticeInline(admin.TabularInline):
@@ -21,16 +21,27 @@ class ChapterInline(admin.TabularInline):
     show_change_link = True
 
 
+@admin.register(CourseCategory)
+class CourseCategoryAdmin(admin.ModelAdmin):
+    list_display = ["name", "order", "course_count"]
+    list_editable = ["order"]
+    prepopulated_fields = {"slug": ["name"]}
+
+    def course_count(self, obj):
+        return obj.courses.count()
+    course_count.short_description = "Courses"
+
+
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ["title", "level", "category", "is_featured", "lessons_count", "created_at"]
-    list_filter = ["level", "is_featured", "category"]
+    list_display = ["title", "level", "course_category", "is_featured", "lessons_count", "created_at"]
+    list_filter = ["level", "is_featured", "course_category"]
     search_fields = ["title", "description"]
     prepopulated_fields = {"slug": ["title"]}
     readonly_fields = ["created_at", "updated_at"]
     inlines = [ChapterInline]
     fieldsets = [
-        ("Content", {"fields": ["title", "slug", "category", "description", "image", "level", "is_featured"]}),
+        ("Content", {"fields": ["title", "slug", "course_category", "description", "image", "level", "is_featured"]}),
         ("Course Body", {"fields": ["overview", "objectives", "requirements", "about"]}),
         ("SEO", {"fields": ["meta_title", "meta_description"]}),
         ("Timestamps", {"fields": ["created_at", "updated_at"]}),
